@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/partial_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:divider="@drawable/divider_vertical_1dp"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <ListView
+            android:id="@+id/list_category"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:choiceMode="singleChoice"
+            android:divider="@drawable/divider_horizontal_1px"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4">
+
+            <ImageView
+                android:src="@mipmap/fenleibanner"
+                android:id="@+id/iv_category_top"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="165dp"
+                />
+
+            <ListView
+                android:id="@+id/list_children1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:divider="@drawable/divider_horizontal_1px"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+
+
+

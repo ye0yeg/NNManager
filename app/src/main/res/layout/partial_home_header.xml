@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <com.gfd.eshop.base.widgets.banner.BannerLayout
+        android:id="@+id/layout_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_180"/>
+
+    <!--<com.gfd.eshop.base.widgets.SimpleCenterSearchView-->
+        <!--android:id="@+id/search_view"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:paddingRight="20dp"-->
+        <!--android:paddingTop="5dp"-->
+        <!--android:paddingBottom="5dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/size_36"-->
+        <!--android:layout_marginRight="@dimen/spacing_normal"-->
+        <!--android:gravity="center"/>-->
+
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/easy_gird_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_progress="@layout/page_progress"/>
+
+    <!--
+    此处做四个ImageView
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_carwash"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_shape">
+
+
+                <TextView
+                    android:id="@+id/tv_wash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="3dp"
+                    android:text="洗车0元"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/ninewash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_wash"
+                    android:layout_margin="3sp"
+                    android:text="洗车永久0元"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="10sp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/tv_wash"
+                    android:src="@mipmap/b1"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/iv_selfdrive"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_shape">
+
+                <TextView
+                    android:id="@+id/tv_selfdrive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="3dp"
+                    android:text="自驾游"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/tv_selfdrive"
+                    android:src="@mipmap/b2"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_nnkill"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_shape">
+
+                <TextView
+                    android:id="@+id/tv_special"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="3dp"
+                    android:text="维修/保养/轮胎"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/tv_special"
+                    android:src="@mipmap/b6"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/iv_hareware"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/table_shape">
+
+                <TextView
+                    android:id="@+id/tv_hardware"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="3dp"
+                    android:text="智能控制"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/tv_hardware"
+                    android:src="@mipmap/b4"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:paddingTop="10dp"
+            android:id="@+id/iv_wannasell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/table_shape"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/wannasell1"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/image_promote_one"
+                android:layout_width="@dimen/size_60"
+                android:layout_height="@dimen/size_60"
+                android:visibility="invisible"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
+
+            <ImageView
+                android:id="@+id/image_promote_two"
+                android:layout_width="@dimen/size_60"
+                android:layout_height="@dimen/size_60"
+                android:visibility="invisible"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
+
+            <ImageView
+                android:id="@+id/image_promote_three"
+                android:layout_width="@dimen/size_60"
+                android:layout_height="@dimen/size_60"
+                android:visibility="invisible"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
+
+            <ImageView
+                android:id="@+id/image_promote_four"
+                android:layout_width="@dimen/size_60"
+                android:layout_height="@dimen/size_60"
+                android:visibility="invisible"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

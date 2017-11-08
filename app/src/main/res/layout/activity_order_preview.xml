@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/partial_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/layout_consignee"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_100"
+                android:background="@android:color/white"
+                android:padding="@dimen/spacing_normal">
+
+                <ImageView
+                    android:id="@+id/image_chevron"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_chevron_right"/>
+
+                <android.support.v4.widget.Space
+                    android:id="@+id/center"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"/>
+
+                <TextView
+                    android:id="@+id/text_consignee"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/center"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/image_chevron"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:textAppearance="@style/ContentText.Normal"/>
+
+                <TextView
+                    android:id="@+id/text_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/center"
+                    android:layout_toLeftOf="@+id/image_chevron"
+                    android:drawableLeft="@drawable/ic_address"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:textAppearance="@style/ContentText.Normal"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@android:color/white"
+                android:orientation="vertical"/>
+
+            <TextView
+                android:id="@+id/text_payment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_54"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@android:color/white"
+                android:drawablePadding="@dimen/spacing_small"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/order_payment"
+                android:textAppearance="@style/ContentText.Large"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_niuniu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@android:color/white"
+                android:drawablePadding="@dimen/spacing_small"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_small"
+                android:textAppearance="@style/ContentText.Large">
+
+                <ImageView
+                    android:padding="5dp"
+                    android:id="@+id/iv_niuniu"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@mipmap/user_icon"
+                    />
+                <TextView
+                    android:textColor="#000000"
+                    android:layout_toRightOf="@id/iv_niuniu"
+                    android:id="@+id/tv_niuniu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="牛牛余额支付"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:layout_below="@id/tv_niuniu"
+                    android:layout_toRightOf="@id/iv_niuniu"
+                    android:text="使用牛牛余额付款更优惠唷！"
+                    android:id="@+id/tv_sideniuniu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/iv_niuiniu_check"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/uncheck"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_alipay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@android:color/white"
+                android:drawablePadding="@dimen/spacing_small"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/order_payment"
+                android:textAppearance="@style/ContentText.Large">
+
+                <ImageView
+                    android:padding="5dp"
+                    android:id="@+id/iv_ali"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@mipmap/alipaylogo"
+                    />
+                <TextView
+                    android:textColor="#000000"
+                    android:layout_toRightOf="@id/iv_ali"
+                    android:id="@+id/tv_ali"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="支付宝"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:layout_below="@id/tv_ali"
+                    android:layout_toRightOf="@id/iv_ali"
+                    android:text="数亿用户都在用，安全可托付"
+                    android:id="@+id/tv_sideali"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/iv_ali_check"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/uncheck"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_wechatpay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@android:color/white"
+                android:drawablePadding="@dimen/spacing_small"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/order_payment"
+                android:textAppearance="@style/ContentText.Large">
+
+                <ImageView
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/iv_wechat"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@mipmap/wechatlogo"
+                    />
+                <TextView
+                    android:textColor="#000000"
+                    android:layout_toRightOf="@id/iv_wechat"
+                    android:id="@+id/tv_wechat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="微信"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:layout_below="@id/tv_wechat"
+                    android:layout_toRightOf="@id/iv_wechat"
+                    android:text="欢迎使用微信支付！"
+                    android:id="@+id/tv_sidewechat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/iv_wechat_check"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/uncheck"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/text_shipping"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_54"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:background="@android:color/white"
+                android:drawablePadding="@dimen/spacing_small"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/order_shipping"
+                android:textAppearance="@style/ContentText.Large"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:id="@+id/text_goods_price"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_54"
+                android:background="@android:color/white"
+                android:drawablePadding="@dimen/spacing_small"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_small"
+                android:textAppearance="@style/ContentText.Large"
+                android:textColor="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/text_shipping_price"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_54"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:background="@android:color/white"
+                android:drawablePadding="@dimen/spacing_small"
+                android:gravity="center_vertical"
+                android:padding="@dimen/spacing_small"
+                android:textAppearance="@style/ContentText.Large"
+                android:textColor="@color/colorAccent"/>
+
+            <Button
+                android:id="@+id/button_summit"
+                style="@style/UserInfoButton"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:enabled="false"
+                android:text="@string/action_submit"/>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>
