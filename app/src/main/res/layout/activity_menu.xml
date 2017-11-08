@@ -31,7 +31,7 @@
             android:background="@drawable/horizontal_bar_bg">
 
             <TextView
-                android:id="@+id/text_manage_address"
+                android:id="@+id/text_manage_payment"
                 style="@style/HorizontalItemTextView"
                 android:drawableLeft="@drawable/ic_help"
                 android:gravity="center_vertical"
