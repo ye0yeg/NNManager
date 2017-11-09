@@ -13,7 +13,7 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:ignore="UselessParent">
-        <com.gfd.eshop.base.widgets.CustomProgressBar
+        <sjhj.niuniushop.ye.nnmanager.base.widgets.CustomProgressBar
             android:id="@+id/progress_bar"
             style="@style/CustomProgressBar"
             android:layout_gravity="center_horizontal"

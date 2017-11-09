@@ -114,6 +114,11 @@
     <string name="order_action_purchase">支付</string>
     <string name="order_is_canceled">订单已取消</string>
 
+    <string name="user_is_name">ID： %s</string>
+    <string name="user_is_time">注册时间: %s</string>
+    <string name="user_is_sudo">权限: %s</string>
+
+
     <string name="collect_title">收藏列表</string>
     <string name="collect_msg_already_collected">本商品已收藏</string>
     <string name="collect_grid">网格</string>

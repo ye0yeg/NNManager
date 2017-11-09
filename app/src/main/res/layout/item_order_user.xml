@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/horizontal_card_bg"
+              android:orientation="vertical">
+
+    <TextView
+        android:textSize="20sp"
+        android:id="@+id/text_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="text_user_name"
+        android:textAppearance="@style/ContentText.FixedSmall"/>
+
+    <TextView
+        android:id="@+id/text_signin_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="text_signin_time"
+        android:textAppearance="@style/ContentText.FixedSmall"/>
+
+    <LinearLayout
+        android:id="@+id/layout_goods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="vertical"
+        android:padding="1px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/spacing_small"
+        android:paddingLeft="@dimen/spacing_tiny"
+        android:paddingRight="@dimen/spacing_tiny"
+        android:paddingTop="@dimen/spacing_small">
+
+        <TextView
+            android:id="@+id/text_sudo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:lines="1"
+            android:text="text_sudo"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/font_large" />
+
+
+        <Button
+            android:maxLines="1"
+            android:id="@+id/btn_change_sudo"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:text="修改权限"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

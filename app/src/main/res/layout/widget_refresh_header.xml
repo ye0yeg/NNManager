@@ -3,7 +3,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
 
-    <com.gfd.eshop.base.widgets.CustomProgressBar
+    <sjhj.niuniushop.ye.nnmanager.base.widgets.CustomProgressBar
         android:id="@+id/refresh_header_progressbar"
         style="@style/CustomProgressBar"
         android:layout_centerInParent="true"

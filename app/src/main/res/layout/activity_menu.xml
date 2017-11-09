@@ -13,6 +13,23 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/horizontal_bar_bg">
+
+            <TextView
+                android:id="@+id/text_me"
+                style="@style/HorizontalItemTextViewNotRight"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_username"
+                android:gravity="center_vertical"
+                android:text="用户"/>
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal"
             android:background="@drawable/horizontal_bar_bg">
 
@@ -35,7 +52,7 @@
                 style="@style/HorizontalItemTextView"
                 android:drawableLeft="@drawable/ic_help"
                 android:gravity="center_vertical"
-                android:text="订单管理"/>
+                android:text="订单管理（开发中）"/>
         </FrameLayout>
 
         <FrameLayout
@@ -49,7 +66,7 @@
                 style="@style/HorizontalItemTextView"
                 android:drawableLeft="@drawable/ic_help"
                 android:gravity="center_vertical"
-                android:text="信息查询"/>
+                android:text="信息查询（开发中）"/>
         </FrameLayout>
 
         <FrameLayout
@@ -66,6 +83,13 @@
                 android:text="检查更新"/>
         </FrameLayout>
 
-
+        <Button
+            android:id="@+id/button_sign_out"
+            style="@style/UserInfoButton"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginRight="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="@string/settings_action_sign_out"
+            />
     </LinearLayout>
 </ScrollView>
