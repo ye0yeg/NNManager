@@ -85,7 +85,6 @@ public class CustomerActivity extends BaseActivity {
 
     private void getUserData() {
         reset();
-        //18106963135
         BmobQuery<MyBmobUser> myBmobUserBmobQuery = new BmobQuery<>();
         myBmobUserBmobQuery.order("-createdAt");
         myBmobUserBmobQuery.findObjects(CustomerActivity.this, new FindListener<MyBmobUser>() {

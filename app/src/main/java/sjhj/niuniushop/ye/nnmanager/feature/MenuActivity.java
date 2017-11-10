@@ -64,7 +64,6 @@ public class MenuActivity extends BaseActivity {
                 Intent payment = new Intent(this, ManagerPaymentActivity.class);
                 startActivity(payment);
                 break;
-
             case R.id.text_help:
 
                 break;

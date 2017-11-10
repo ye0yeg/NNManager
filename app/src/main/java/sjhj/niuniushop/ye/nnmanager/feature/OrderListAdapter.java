@@ -68,7 +68,7 @@ abstract class OrderListAdapter extends BaseListAdapter<MyBmobUser, OrderListAda
                 levelName = "VIP";
             }
 
-            String level = getContext().getString(R.string.user_is_time, levelName);
+            String level = getContext().getString(R.string.user_is_sudo, levelName);
             tvSudo.setText(level);
 
             goodsLayout.removeAllViews();
