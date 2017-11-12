@@ -36,11 +36,19 @@ public class ManagerPaymentActivity extends BaseActivity {
             super.handleMessage(msg);
             if (msg.what == GETDATASUCCESS) {
                 //获得信息，分类信息
-                for (int i = 0; i < allData.size(); i++) {
-                    //以
+                for (int i = 0; i < mMyBmobUsers.size(); i++) {
+                    if (mMyBmobUsers.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
+                        for (int j = 0; j < allData.size(); j++) {
+                            if (allData.get(j).getName().equals(mMyBmobUsers.get(i).getName()) && allData.get(j).getPay()) {
+                                //查看所有已经支付的订单。加入订单管理
+                                mMyBmobPayments.add(allData.get(j));
+                                System.out.println(allData.get(j).toString());
+                            }
+                        }
+                    }
 
                 }
-
+                //双循环，可以实现信息
             }
         }
     };
@@ -54,6 +62,8 @@ public class ManagerPaymentActivity extends BaseActivity {
     @Override
     protected void initView() {
         allData = new ArrayList<>();
+        mMyBmobUsers = new ArrayList<>();
+        mMyBmobPayments = new ArrayList<>();
         getData();
     }
 
@@ -71,9 +81,10 @@ public class ManagerPaymentActivity extends BaseActivity {
                         public void onSuccess(List<MyBmobUser> list) {
                             for (int i = 0; i < list.size(); i++) {
                                 if (list.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
-
+                                    mMyBmobUsers.add(list.get(i));
                                 }
                             }
+                            mHandler.sendEmptyMessage(GETDATASUCCESS);
                         }
 
                         @Override
@@ -86,7 +97,6 @@ public class ManagerPaymentActivity extends BaseActivity {
                     //无信息提示
                 }
 
-                mHandler.sendEmptyMessage(GETDATASUCCESS);
 
             }
 

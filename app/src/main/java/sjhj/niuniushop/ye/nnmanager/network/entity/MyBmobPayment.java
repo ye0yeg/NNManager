@@ -9,6 +9,23 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class MyBmobPayment extends BmobObject {
+    @Override
+    public String toString() {
+        return "MyBmobPayment{" +
+                "ordernumber='" + ordernumber + '\'' +
+                ", address='" + address + '\'' +
+                ", goodslist=" + goodslist +
+                ", name='" + name + '\'' +
+                ", buyer='" + buyer + '\'' +
+                ", isPay=" + isPay +
+                ", mGoodState=" + mGoodState +
+                ", PayResult='" + PayResult + '\'' +
+                ", goodTitle='" + goodTitle + '\'' +
+                ", goodTotal=" + goodTotal +
+                ", creatTime='" + creatTime + '\'' +
+                '}';
+    }
+
     private String ordernumber;
 
     private String address;

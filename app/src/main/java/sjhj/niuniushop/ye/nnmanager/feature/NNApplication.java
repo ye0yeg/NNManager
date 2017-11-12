@@ -13,8 +13,9 @@ public class NNApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //be66e72f9340a4aa5c23fc037469b87a 是测试
-        Bmob.initialize(this, "82e2ea8e47d85e35fad6af646def27f9");
+        //82e2ea8e47d85e35fad6af646def27f9 是实际使用
+        //337b791be8fac8168dede0d44fbd9003 是测试
+        Bmob.initialize(this, "337b791be8fac8168dede0d44fbd9003");
 
     }
 }
