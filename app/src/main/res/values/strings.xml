@@ -118,6 +118,13 @@
     <string name="user_is_time">注册时间: %s</string>
     <string name="user_is_sudo">权限: %s</string>
 
+    <string name="payment_is_detail">详情： %s</string>
+    <string name="payment_is_phone">电话： %s</string>
+    <string name="payment_is_address">地址： %s</string>
+    <string name="payment_is_recipients">收件人： %s</string>
+    <string name="payment_is_order_time">下单时间： %s</string>
+    <string name="payment_is_order_number">单号： %s</string>
+    <string name="payment_is_order_state">状态： %s</string>
 
     <string name="collect_title">收藏列表</string>
     <string name="collect_msg_already_collected">本商品已收藏</string>

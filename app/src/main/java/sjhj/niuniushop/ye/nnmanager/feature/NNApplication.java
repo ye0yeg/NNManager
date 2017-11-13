@@ -17,5 +17,6 @@ public class NNApplication extends Application {
         //337b791be8fac8168dede0d44fbd9003 是测试
         Bmob.initialize(this, "337b791be8fac8168dede0d44fbd9003");
 
+//        Bmob.initialize(this, "82e2ea8e47d85e35fad6af646def27f9");
     }
 }

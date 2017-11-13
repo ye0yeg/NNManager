@@ -8,7 +8,6 @@
 
     <!--
 
-
 详情
 地址
 收件人
@@ -28,6 +27,19 @@
         android:text="text_user_name"
         android:textAppearance="@style/ContentText.FixedSmall"
         android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/text_manager_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="text_manager_address"
+        android:textAppearance="@style/ContentText.FixedSmall"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/text_manager_address"

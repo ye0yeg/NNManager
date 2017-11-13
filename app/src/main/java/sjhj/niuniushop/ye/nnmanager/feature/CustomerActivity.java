@@ -87,10 +87,11 @@ public class CustomerActivity extends BaseActivity {
         reset();
         BmobQuery<MyBmobUser> myBmobUserBmobQuery = new BmobQuery<>();
         myBmobUserBmobQuery.order("-createdAt");
+        myBmobUserBmobQuery.setLimit(500);
         myBmobUserBmobQuery.findObjects(CustomerActivity.this, new FindListener<MyBmobUser>() {
             @Override
             public void onSuccess(List<MyBmobUser> list) {
-                MyBmobUser myBmobUser = new MyBmobUser();
+//                MyBmobUser myBmobUser = new MyBmobUser();
                 for (int i = 0; i < list.size(); i++) {
                     if (list.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
                         mBmobUserArrayList.add(list.get(i));

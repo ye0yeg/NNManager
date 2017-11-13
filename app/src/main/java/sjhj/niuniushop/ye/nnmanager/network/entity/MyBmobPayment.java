@@ -12,7 +12,9 @@ public class MyBmobPayment extends BmobObject {
     @Override
     public String toString() {
         return "MyBmobPayment{" +
-                "ordernumber='" + ordernumber + '\'' +
+                "shippingCom='" + shippingCom + '\'' +
+                ", shippingOrder='" + shippingOrder + '\'' +
+                ", ordernumber='" + ordernumber + '\'' +
                 ", address='" + address + '\'' +
                 ", goodslist=" + goodslist +
                 ", name='" + name + '\'' +
@@ -25,6 +27,10 @@ public class MyBmobPayment extends BmobObject {
                 ", creatTime='" + creatTime + '\'' +
                 '}';
     }
+
+    private String shippingCom;
+
+    private String shippingOrder;
 
     private String ordernumber;
 
@@ -94,6 +100,22 @@ public class MyBmobPayment extends BmobObject {
 
     public void setGoodState(GoodState goodState) {
         mGoodState = goodState;
+    }
+
+    public String getShippingOrder() {
+        return shippingOrder;
+    }
+
+    public void setShippingOrder(String shippingOrder) {
+        this.shippingOrder = shippingOrder;
+    }
+
+    public String getShippingCom() {
+        return shippingCom;
+    }
+
+    public void setShippingCom(String shippingCom) {
+        this.shippingCom = shippingCom;
     }
 
     public static class GoodState {
