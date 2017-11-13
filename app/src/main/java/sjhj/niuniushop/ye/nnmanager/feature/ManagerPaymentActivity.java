@@ -237,7 +237,6 @@ public class ManagerPaymentActivity extends BaseActivity {
                                             @Override
                                             public void onSuccess() {
                                                 Toasty.success(getApplicationContext(), "状态修改成功!").show();
-
                                                 mHandler.sendEmptyMessage(CHANGESUCCESS);
                                             }
 

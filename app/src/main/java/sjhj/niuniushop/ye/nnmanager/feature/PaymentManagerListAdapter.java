@@ -65,6 +65,13 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @BindView(R.id.btn_change_sudo)
         Button btnSudo;
 
+        @BindView(R.id.ll_payment_info)
+        LinearLayout llOrderInfo;
+
+        @BindView(R.id.text_payment_info)
+        TextView tvOrderInfo;
+
+
         @BindView(R.id.layout_goods)
         LinearLayout goodsLayout;
 
@@ -86,6 +93,7 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             tvRecipients.setVisibility(View.VISIBLE);
             tvSigninTime.setVisibility(View.VISIBLE);
             tvOrderNUmber.setVisibility(View.VISIBLE);
+            llOrderInfo.setVisibility(View.VISIBLE);
 
             String orderSn = getContext().getString(R.string.payment_is_detail, mMyBmobPayment.getGoodTitle());
             tvDetail.setText(orderSn);
@@ -105,11 +113,17 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             String orderNumber = getContext().getString(R.string.payment_is_order_number, mMyBmobPayment.getOrdernumber());
             tvOrderNUmber.setText(orderNumber);
 
+
             String shippingState = null;
             if (mMyBmobPayment.getGoodState().getDeliery()) {
                 //已发货  -    > 可查看物流 ， 可更新订单号
                 shippingState = "已发货！";
                 btnSudo.setText("查看物流");
+
+                String orderInfo = "快递名称：" + mMyBmobPayment.getShippingCom() +
+                        "    单号：" + mMyBmobPayment.getShippingOrder();
+                tvOrderInfo.setText(orderInfo);
+
             } else if (mMyBmobPayment.getGoodState().getShipping()) {
                 // 等待发货
                 shippingState = "待发货!";
