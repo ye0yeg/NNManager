@@ -31,6 +31,8 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     protected abstract void onSudoChanger(MyBmobPayment myBmobPayment);
 
+    protected abstract void onShippingCheck(MyBmobPayment myBmobPayment);
+
 
     class ViewHolder extends BaseListAdapter.ViewHolder {
 
@@ -78,6 +80,8 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
         private MyBmobPayment mMyBmobPayment;
 
+        private MyBmobPayment.GoodState mGoodState;
+
         ViewHolder(View itemView) {
             super(itemView);
 
@@ -86,14 +90,16 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @Override
         protected void bind(int position) {
             mMyBmobPayment = getItem(position);
-
+            mGoodState = mMyBmobPayment.getGoodState();
+            String shippingState = null;
+            String orderInfo = null;
             tvDetail.setVisibility(View.VISIBLE);
             tvPhone.setVisibility(View.VISIBLE);
             tvAddress.setVisibility(View.VISIBLE);
             tvRecipients.setVisibility(View.VISIBLE);
             tvSigninTime.setVisibility(View.VISIBLE);
             tvOrderNUmber.setVisibility(View.VISIBLE);
-            llOrderInfo.setVisibility(View.VISIBLE);
+
 
             String orderSn = getContext().getString(R.string.payment_is_detail, mMyBmobPayment.getGoodTitle());
             tvDetail.setText(orderSn);
@@ -113,22 +119,21 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             String orderNumber = getContext().getString(R.string.payment_is_order_number, mMyBmobPayment.getOrdernumber());
             tvOrderNUmber.setText(orderNumber);
 
-
-            String shippingState = null;
-            if (mMyBmobPayment.getGoodState().getDeliery()) {
+            if (mGoodState.getDeliery()) {
+                llOrderInfo.setVisibility(View.VISIBLE);
                 //已发货  -    > 可查看物流 ， 可更新订单号
-                shippingState = "已发货！";
-                btnSudo.setText("查看物流");
-
-                String orderInfo = "快递名称：" + mMyBmobPayment.getShippingCom() +
+                shippingState = getContext().getString(R.string.payment_is_shiping);
+                btnSudo.setText(getContext().getString(R.string.payment_text_checkshipping));
+                orderInfo = "快递名称：" + mMyBmobPayment.getShippingCom() +
                         "    单号：" + mMyBmobPayment.getShippingOrder();
                 tvOrderInfo.setText(orderInfo);
-
-            } else if (mMyBmobPayment.getGoodState().getShipping()) {
+            } else if (mGoodState.getShipping()) {
+                llOrderInfo.setVisibility(View.GONE);
                 // 等待发货
                 shippingState = "待发货!";
                 btnSudo.setText("修改发货");
             } else if (!mMyBmobPayment.getPay()) {
+                llOrderInfo.setVisibility(View.GONE);
                 //未付款
                 shippingState = "未支付!";
                 btnSudo.setText("修改状态");
@@ -143,6 +148,10 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @OnClick(R.id.btn_change_sudo)
         void onClick(View view) {
             if (view.getId() == R.id.btn_change_sudo) {
+                if (mMyBmobPayment.getGoodState().getDeliery()) {
+                    onShippingCheck(mMyBmobPayment);
+                    return;
+                }
                 onSudoChanger(mMyBmobPayment);
             }
 
@@ -150,3 +159,20 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     }
 }
+
+/*
+*
+*
+*
+* What is not true?
+* Am I success?
+* Just like those thing Ive done.
+* I have no idea about this.
+* All my like is around a person.
+* this person, maybe I will end here too.
+* But my heart still beating. It beat because I don't wanna live.
+* Ys, It Beat Because I Don't like to live here
+*Ok, Just End here.
+*
+*
+* */

@@ -52,7 +52,7 @@
                 style="@style/HorizontalItemTextView"
                 android:drawableLeft="@drawable/ic_help"
                 android:gravity="center_vertical"
-                android:text="订单管理（开发中）"/>
+                android:text="订单管理"/>
         </FrameLayout>
 
         <FrameLayout

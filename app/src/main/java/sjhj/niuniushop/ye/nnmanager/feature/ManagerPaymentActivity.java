@@ -1,5 +1,10 @@
 package sjhj.niuniushop.ye.nnmanager.feature;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ListView;
@@ -39,7 +44,7 @@ public class ManagerPaymentActivity extends BaseActivity {
     private ArrayList<MyBmobPayment> allData;
     private ArrayList<MyBmobPayment> mMyBmobPayments;
     private ArrayList<MyBmobUser> mMyBmobUsers;
-
+    private ArrayList<MyBmobPayment> allPayData;
     private ProgressWrapper mProgressWrapper;
 
     private PtrWrapper mPtrWrapper;
@@ -57,7 +62,19 @@ public class ManagerPaymentActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == GETDATASUCCESS) {
-                mMyAdapter.reset(mMyBmobPayments);
+                if (UserManager.getInstance().getUser().getName().equals("15959207612")) {
+                    // 过滤信息
+                    for (int j = 0; j < allData.size(); j++) {
+                        if (allData.get(j).getPay()) {
+                            //查看所有已经支付的订单。加入订单管理
+                            allPayData.add(allData.get(j));
+                        }
+                    }
+                    mMyAdapter.reset(allPayData);
+
+                } else {
+                    mMyAdapter.reset(mMyBmobPayments);
+                }
                 mPtrWrapper.stopRefresh();
             } else if (msg.what == CHANGESUCCESS) {
                 mPtrWrapper.postRefresh(50);
@@ -77,6 +94,7 @@ public class ManagerPaymentActivity extends BaseActivity {
         allData = new ArrayList<>();
         mMyBmobUsers = new ArrayList<>();
         mMyBmobPayments = new ArrayList<>();
+        allPayData = new ArrayList<>();
         mMyAdapter = new MyAdapter();
         userListView.setAdapter(mMyAdapter);
         mPtrWrapper = new PtrWrapper(this) {
@@ -93,6 +111,7 @@ public class ManagerPaymentActivity extends BaseActivity {
         allData.clear();
         mMyBmobPayments.clear();
         mMyBmobUsers.clear();
+        allPayData.clear();
     }
 
     private void getData() {
@@ -163,9 +182,11 @@ public class ManagerPaymentActivity extends BaseActivity {
         @Override
         protected void onSudoChanger(final MyBmobPayment myBmobPayment) {
 
-//            if(!UserManager.getInstance().getUser().getName().equals("1")){
-//                Toasty.error(ManagerPaymentActivity.this,"您无权进行修改").show();
+//            if (UserManager.getInstance().getUser().getName().equals("15959207612")) {
+//                Toasty.error(ManagerPaymentActivity.this, "您无权进行修改").show();
+//                return;
 //            }
+
             int pos = 0;
             if (myBmobPayment.getGoodState().getShipping()) {
                 pos = 0;
@@ -201,6 +222,7 @@ public class ManagerPaymentActivity extends BaseActivity {
 
 
                     } else if (position == 1) {
+
                         DialogUIUtils.showAlert(ManagerPaymentActivity.this, "物流", "", "输入物流公司", "输入物流编号", "确定", "取消"
                                 , false, true, true, new DialogUIListener() {
 
@@ -257,6 +279,21 @@ public class ManagerPaymentActivity extends BaseActivity {
 
             //查看物流
 
+        }
+
+        @Override
+        protected void onShippingCheck(MyBmobPayment myBmobPayment) {
+
+            //获取剪贴板管理器：
+            ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            // 创建普通字符型ClipData
+            ClipData mClipData = ClipData.newPlainText("Label", myBmobPayment.getShippingOrder());
+            // 将ClipData内容放到系统剪贴板里。
+            cm.setPrimaryClip(mClipData);
+            Toasty.info(ManagerPaymentActivity.this, "已将运单复制到剪切板 !").show();
+            Uri uri = Uri.parse("http://www.kuaidi100.com/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
     }
 
