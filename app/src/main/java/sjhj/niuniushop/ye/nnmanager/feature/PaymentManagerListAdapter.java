@@ -162,8 +162,6 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
 /*
 *
-*
-*
 * What is not true?
 * Am I success?
 * Just like those thing Ive done.
