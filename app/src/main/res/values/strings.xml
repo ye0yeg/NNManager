@@ -126,6 +126,9 @@
     <string name="payment_is_order_number">单号： %s</string>
     <string name="payment_is_order_state">状态： %s</string>
     <string name="payment_is_order_info">订单信息： %s</string>
+    <string name="payment_is_order_note">备注： %s</string>
+    <string name="payment_is_order_recom">推荐人： %s</string>
+
 
     <string name="collect_title">收藏列表</string>
     <string name="collect_msg_already_collected">本商品已收藏</string>

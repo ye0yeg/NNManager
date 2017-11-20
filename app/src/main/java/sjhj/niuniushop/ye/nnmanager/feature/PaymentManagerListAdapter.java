@@ -4,6 +4,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -18,6 +23,7 @@ import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobUser;
 
 abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, PaymentManagerListAdapter.ViewHolder> {
 
+    private ArrayList<MyBmobUser> myBmobUserArrayList1;
 
     @Override
     protected int getItemViewLayout() {
@@ -33,6 +39,13 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     protected abstract void onShippingCheck(MyBmobPayment myBmobPayment);
 
+    public PaymentManagerListAdapter() {
+    }
+
+    public PaymentManagerListAdapter(ArrayList<MyBmobUser> myBmobUserArrayList) {
+        this.myBmobUserArrayList1 = new ArrayList<>();
+        this.myBmobUserArrayList1= myBmobUserArrayList;
+    }
 
     class ViewHolder extends BaseListAdapter.ViewHolder {
 
@@ -73,23 +86,40 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @BindView(R.id.text_payment_info)
         TextView tvOrderInfo;
 
+        //推荐人
+        @BindView(R.id.text_payment_recom_person)
+        TextView tvRecomPerson;
+
+        //备注
+        @BindView(R.id.text_payment_note)
+        TextView tvNote;
+
+        private MyBmobPayment mMyBmobPayment;
+
 
         @BindView(R.id.layout_goods)
         LinearLayout goodsLayout;
-
-
-        private MyBmobPayment mMyBmobPayment;
 
         private MyBmobPayment.GoodState mGoodState;
 
         ViewHolder(View itemView) {
             super(itemView);
-
         }
+
 
         @Override
         protected void bind(int position) {
             mMyBmobPayment = getItem(position);
+
+            String recom = null;
+            //查找推荐人
+            for (int i = 0; i < myBmobUserArrayList1.size(); i++) {
+                if (mMyBmobPayment.getName().equals(myBmobUserArrayList1.get(i).getRecomNumber())) {
+                    recom = myBmobUserArrayList1.get(i).getName();
+                    continue;
+                }
+            }
+
             mGoodState = mMyBmobPayment.getGoodState();
             String shippingState = null;
             String orderInfo = null;
@@ -99,6 +129,7 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             tvRecipients.setVisibility(View.VISIBLE);
             tvSigninTime.setVisibility(View.VISIBLE);
             tvOrderNUmber.setVisibility(View.VISIBLE);
+            tvRecomPerson.setVisibility(View.VISIBLE);
 
 
             String orderSn = getContext().getString(R.string.payment_is_detail, mMyBmobPayment.getGoodTitle());
@@ -118,6 +149,9 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
             String orderNumber = getContext().getString(R.string.payment_is_order_number, mMyBmobPayment.getOrdernumber());
             tvOrderNUmber.setText(orderNumber);
+
+            String recomPerson = getContext().getString(R.string.payment_is_order_recom, recom);
+            tvRecomPerson.setText(recomPerson);
 
             if (mGoodState.getDeliery()) {
                 llOrderInfo.setVisibility(View.VISIBLE);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/horizontal_card_bg"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/horizontal_card_bg"
+              android:orientation="vertical">
 
 
     <!--
@@ -16,6 +16,7 @@
                      - 状态
 
      -->
+    <!--   详情   -->
     <TextView
         android:id="@+id/text_user_name"
         android:layout_width="match_parent"
@@ -26,9 +27,10 @@
         android:paddingRight="@dimen/spacing_normal"
         android:text="text_user_name"
         android:textAppearance="@style/ContentText.FixedSmall"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
 
+    <!--  电话，其实提取的是userName  -->
     <TextView
         android:id="@+id/text_manager_phone_number"
         android:layout_width="match_parent"
@@ -39,8 +41,9 @@
         android:paddingRight="@dimen/spacing_normal"
         android:text="text_manager_address"
         android:textAppearance="@style/ContentText.FixedSmall"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
+    <!-- 地址 : address -->
     <TextView
         android:id="@+id/text_manager_address"
         android:layout_width="match_parent"
@@ -51,8 +54,9 @@
         android:paddingRight="@dimen/spacing_normal"
         android:text="text_manager_address"
         android:textAppearance="@style/ContentText.FixedSmall"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
+    <!-- 收件人  -->
     <TextView
         android:id="@+id/text_manager_people"
         android:layout_width="match_parent"
@@ -63,8 +67,9 @@
         android:paddingRight="@dimen/spacing_normal"
         android:text="text_manager_people"
         android:textAppearance="@style/ContentText.FixedSmall"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
+    <!--  下单时间  -->
     <TextView
         android:id="@+id/text_signin_time"
         android:layout_width="match_parent"
@@ -74,8 +79,9 @@
         android:paddingLeft="@dimen/spacing_normal"
         android:paddingRight="@dimen/spacing_normal"
         android:text="text_signin_time"
-        android:textAppearance="@style/ContentText.FixedSmall" />
+        android:textAppearance="@style/ContentText.FixedSmall"/>
 
+    <!--  订单号  -->
     <TextView
         android:id="@+id/text_payment_ordernumber"
         android:layout_width="match_parent"
@@ -86,20 +92,48 @@
         android:paddingRight="@dimen/spacing_normal"
         android:text="text_signin_time"
         android:textAppearance="@style/ContentText.FixedSmall"
-        android:visibility="gone" />
+        android:visibility="gone"/>
+
+    <!--  备注  -->
+    <TextView
+        android:id="@+id/text_payment_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="text_signin_time"
+        android:textAppearance="@style/ContentText.FixedSmall"
+        android:visibility="gone"/>
 
 
+    <!--  推荐人  -->
+    <TextView
+        android:id="@+id/text_payment_recom_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="text_signin_time"
+        android:textAppearance="@style/ContentText.FixedSmall"
+        android:visibility="gone"/>
+
+
+    <!--    -->
     <LinearLayout
         android:id="@+id/layout_goods"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/horizontal_bar_bg"
         android:orientation="vertical"
-        android:padding="1px" />
+        android:padding="1px"/>
 
 
+    <!--  物流信息等  -->
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/ll_payment_info"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_60"
@@ -107,7 +141,8 @@
         android:paddingBottom="@dimen/spacing_small"
         android:paddingLeft="@dimen/spacing_tiny"
         android:paddingRight="@dimen/spacing_tiny"
-        android:paddingTop="@dimen/spacing_small">
+        android:paddingTop="@dimen/spacing_small"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/text_payment_info"
@@ -119,11 +154,12 @@
             android:lines="1"
             android:text="无信息"
             android:textColor="#ff4e02"
-            android:textSize="@dimen/font_large" />
-
+            android:textSize="@dimen/font_large"/>
 
     </LinearLayout>
 
+
+    <!--  状态和按钮区  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_60"
@@ -143,7 +179,7 @@
             android:lines="1"
             android:text="text_sudo"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/font_large" />
+            android:textSize="@dimen/font_large"/>
 
 
         <Button
@@ -157,7 +193,7 @@
             android:maxLines="1"
             android:text="修改权限"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_large" />
+            android:textSize="@dimen/font_large"/>
 
 
     </LinearLayout>

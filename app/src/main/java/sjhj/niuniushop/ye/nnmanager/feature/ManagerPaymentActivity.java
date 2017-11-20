@@ -15,9 +15,9 @@ import com.dou361.dialogui.listener.DialogUIListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -62,7 +62,25 @@ public class ManagerPaymentActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == GETDATASUCCESS) {
-                if (UserManager.getInstance().getUser().getName().equals("15959207612")) {
+
+                mMyAdapter = new MyAdapter(mMyBmobUsers);
+                userListView.setAdapter(mMyAdapter);
+                //获得信息，分类信息
+                for (int i = 0; i < mMyBmobUsers.size(); i++) {
+                    if (mMyBmobUsers.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
+                        //双循环，可以实现信息
+                        for (int j = 0; j < allData.size(); j++) {
+                            if (allData.get(j).getName().equals(mMyBmobUsers.get(i).getName()) && allData.get(j).getPay()) {
+                                //查看所有已经支付的订单。加入订单管理
+                                mMyBmobPayments.add(allData.get(j));
+                                System.out.println(allData.get(j).toString());
+                            }
+                        }
+                    }
+                }
+
+
+                if (UserManager.getInstance().getUser().getName().equals("15959207612") || UserManager.getInstance().getUser().getRank_level().equals("101")) {
                     // 过滤信息
                     for (int j = 0; j < allData.size(); j++) {
                         if (allData.get(j).getPay()) {
@@ -95,8 +113,6 @@ public class ManagerPaymentActivity extends BaseActivity {
         mMyBmobUsers = new ArrayList<>();
         mMyBmobPayments = new ArrayList<>();
         allPayData = new ArrayList<>();
-        mMyAdapter = new MyAdapter();
-        userListView.setAdapter(mMyAdapter);
         mPtrWrapper = new PtrWrapper(this) {
             @Override
             public void onRefresh() {
@@ -127,27 +143,17 @@ public class ManagerPaymentActivity extends BaseActivity {
                     //获得总数据
                     BmobQuery<MyBmobUser> myBmobUserBmobQuery = new BmobQuery<MyBmobUser>();
                     myBmobUserBmobQuery.order("-createdAt");
+                    myBmobUserBmobQuery.setLimit(500);
                     myBmobUserBmobQuery.findObjects(ManagerPaymentActivity.this, new FindListener<MyBmobUser>() {
                         @Override
                         public void onSuccess(List<MyBmobUser> list) {
                             for (int i = 0; i < list.size(); i++) {
                                 if (list.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
                                     mMyBmobUsers.add(list.get(i));
+                                    System.out.println(list.get(i).toString());
                                 }
                             }
-                            //获得信息，分类信息
-                            for (int i = 0; i < mMyBmobUsers.size(); i++) {
-                                if (mMyBmobUsers.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
-                                    //双循环，可以实现信息
-                                    for (int j = 0; j < allData.size(); j++) {
-                                        if (allData.get(j).getName().equals(mMyBmobUsers.get(i).getName()) && allData.get(j).getPay()) {
-                                            //查看所有已经支付的订单。加入订单管理
-                                            mMyBmobPayments.add(allData.get(j));
-                                            System.out.println(allData.get(j).toString());
-                                        }
-                                    }
-                                }
-                            }
+
                             mHandler.sendEmptyMessage(GETDATASUCCESS);
                         }
 
@@ -178,6 +184,10 @@ public class ManagerPaymentActivity extends BaseActivity {
     }
 
     public class MyAdapter extends PaymentManagerListAdapter {
+
+        public MyAdapter(ArrayList<MyBmobUser> myBmobUserArrayList) {
+            super(myBmobUserArrayList);
+        }
 
         @Override
         protected void onSudoChanger(final MyBmobPayment myBmobPayment) {

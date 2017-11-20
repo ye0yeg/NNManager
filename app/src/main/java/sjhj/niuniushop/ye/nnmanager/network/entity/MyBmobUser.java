@@ -18,6 +18,23 @@ public class MyBmobUser extends BmobObject {
     private OrderNum orderNum;
 
     //余额
+    @Override
+    public String toString() {
+        return "MyBmobUser{" +
+                "id=" + id +
+                ", objId='" + objId + '\'' +
+                ", name='" + name + '\'' +
+                ", rank_name='" + rank_name + '\'' +
+                ", rank_level=" + rank_level +
+                ", orderNum=" + orderNum +
+                ", remain_money=" + remain_money +
+                ", chargeHistroys=" + chargeHistroys +
+                ", moneyUsingHistories=" + moneyUsingHistories +
+                ", offLine=" + offLine +
+                ", RecomNumber='" + RecomNumber + '\'' +
+                '}';
+    }
+
     private Double remain_money;
 
     //充值历史
