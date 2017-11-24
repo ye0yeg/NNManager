@@ -23,7 +23,7 @@ import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobUser;
 
 abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, PaymentManagerListAdapter.ViewHolder> {
 
-    private ArrayList<MyBmobUser> myBmobUserArrayList1;
+    private ArrayList<MyBmobUser> myBmobUserArrayList1 = new ArrayList<>();
 
     @Override
     protected int getItemViewLayout() {
@@ -39,12 +39,11 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     protected abstract void onShippingCheck(MyBmobPayment myBmobPayment);
 
-    public PaymentManagerListAdapter() {
-    }
+    protected abstract String getRecom(MyBmobPayment myBmobPayment);
 
-    public PaymentManagerListAdapter(ArrayList<MyBmobUser> myBmobUserArrayList) {
-        this.myBmobUserArrayList1 = new ArrayList<>();
-        this.myBmobUserArrayList1= myBmobUserArrayList;
+    public PaymentManagerListAdapter(final ArrayList<MyBmobUser> myBmobUserArrayList) {
+        //这玩意儿一直是空的。 但是那玩意儿都有值
+        myBmobUserArrayList1 = myBmobUserArrayList;
     }
 
     class ViewHolder extends BaseListAdapter.ViewHolder {
@@ -80,9 +79,11 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @BindView(R.id.btn_change_sudo)
         Button btnSudo;
 
+        //订单信息的ll
         @BindView(R.id.ll_payment_info)
         LinearLayout llOrderInfo;
 
+        //支付信息
         @BindView(R.id.text_payment_info)
         TextView tvOrderInfo;
 
@@ -111,14 +112,14 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         protected void bind(int position) {
             mMyBmobPayment = getItem(position);
 
-            String recom = null;
-            //查找推荐人
-            for (int i = 0; i < myBmobUserArrayList1.size(); i++) {
-                if (mMyBmobPayment.getName().equals(myBmobUserArrayList1.get(i).getRecomNumber())) {
-                    recom = myBmobUserArrayList1.get(i).getName();
-                    continue;
-                }
-            }
+//            String recom = null;
+//            //查找推荐人
+//            for (int i = 0; i < myBmobUserArrayList1.size(); i++) {
+//                if (mMyBmobPayment.getName().equals(myBmobUserArrayList1.get(i).getRecomNumber())) {
+//                    recom = myBmobUserArrayList1.get(i).getName();
+//                    continue;
+//                }
+//            }
 
             mGoodState = mMyBmobPayment.getGoodState();
             String shippingState = null;
@@ -150,8 +151,8 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             String orderNumber = getContext().getString(R.string.payment_is_order_number, mMyBmobPayment.getOrdernumber());
             tvOrderNUmber.setText(orderNumber);
 
-            String recomPerson = getContext().getString(R.string.payment_is_order_recom, recom);
-            tvRecomPerson.setText(recomPerson);
+//            String recomPerson = getContext().getString(R.string.payment_is_order_recom, recom);
+//            tvRecomPerson.setText(recomPerson);
 
             if (mGoodState.getDeliery()) {
                 llOrderInfo.setVisibility(View.VISIBLE);
@@ -176,6 +177,9 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             String level = getContext().getString(R.string.payment_is_order_state, shippingState);
             tvSudo.setText(level);
 
+//            String recom = getContext().getString(R.string.payment_is_order_recom, getRecom(mMyBmobPayment));
+//            tvRecomPerson.setText(recom);
+
             goodsLayout.removeAllViews();
         }
 
@@ -193,18 +197,3 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     }
 }
-
-/*
-*
-* What is not true?
-* Am I success?
-* Just like those thing Ive done.
-* I have no idea about this.
-* All my like is around a person.
-* this person, maybe I will end here too.
-* But my heart still beating. It beat because I don't wanna live.
-* Ys, It Beat Because I Don't like to live here
-*Ok, Just End here.
-*
-*
-* */

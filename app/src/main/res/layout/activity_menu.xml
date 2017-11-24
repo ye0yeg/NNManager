@@ -26,6 +26,57 @@
                 android:text="用户"/>
         </FrameLayout>
 
+        <!-- 业务员 -->
+        <FrameLayout
+            android:id="@+id/fl_customer_by_seller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/horizontal_bar_bg"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/text_customer_manager_by_seller"
+                style="@style/HorizontalItemTextView"
+                android:drawableLeft="@drawable/ic_help"
+                android:gravity="center_vertical"
+                android:text="订单管理<业务员>"/>
+        </FrameLayout>
+
+        <!--财务审核-->
+        <FrameLayout
+            android:id="@+id/fl_financial_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/horizontal_bar_bg"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/text_financial_manager"
+                style="@style/HorizontalItemTextView"
+                android:drawableLeft="@drawable/ic_help"
+                android:gravity="center_vertical"
+                android:text="财务审核"/>
+        </FrameLayout>
+
+        <!--倉庫管理-->
+        <FrameLayout
+            android:id="@+id/fl_storage_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/horizontal_bar_bg"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/text_storage_manager"
+                style="@style/HorizontalItemTextView"
+                android:drawableLeft="@drawable/ic_help"
+                android:gravity="center_vertical"
+                android:text="仓库管理"/>
+        </FrameLayout>
+
 
         <FrameLayout
             android:layout_width="match_parent"

@@ -44,6 +44,8 @@ public class ManagerPaymentActivity extends BaseActivity {
     private ArrayList<MyBmobPayment> allData;
     private ArrayList<MyBmobPayment> mMyBmobPayments;
     private ArrayList<MyBmobUser> mMyBmobUsers;
+    private ArrayList<MyBmobUser> allMyBmobUser;
+
     private ArrayList<MyBmobPayment> allPayData;
     private ProgressWrapper mProgressWrapper;
 
@@ -63,7 +65,7 @@ public class ManagerPaymentActivity extends BaseActivity {
             super.handleMessage(msg);
             if (msg.what == GETDATASUCCESS) {
 
-                mMyAdapter = new MyAdapter(mMyBmobUsers);
+                mMyAdapter = new MyAdapter(allMyBmobUser);
                 userListView.setAdapter(mMyAdapter);
                 //获得信息，分类信息
                 for (int i = 0; i < mMyBmobUsers.size(); i++) {
@@ -113,6 +115,8 @@ public class ManagerPaymentActivity extends BaseActivity {
         mMyBmobUsers = new ArrayList<>();
         mMyBmobPayments = new ArrayList<>();
         allPayData = new ArrayList<>();
+        allMyBmobUser = new ArrayList<>();
+
         mPtrWrapper = new PtrWrapper(this) {
             @Override
             public void onRefresh() {
@@ -148,6 +152,7 @@ public class ManagerPaymentActivity extends BaseActivity {
                         @Override
                         public void onSuccess(List<MyBmobUser> list) {
                             for (int i = 0; i < list.size(); i++) {
+                                allMyBmobUser.add(list.get(i));
                                 if (list.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
                                     mMyBmobUsers.add(list.get(i));
                                     System.out.println(list.get(i).toString());
@@ -304,6 +309,21 @@ public class ManagerPaymentActivity extends BaseActivity {
             Uri uri = Uri.parse("http://www.kuaidi100.com/");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
+        }
+
+        @Override
+        protected String getRecom(MyBmobPayment myBmobPayment) {
+
+            String recom = null;
+            //查找推荐人
+            for (int i = 0; i < allMyBmobUser.size(); i++) {
+                if (myBmobPayment.getName().equals(allMyBmobUser.get(i).getRecomNumber())) {
+                    recom = allMyBmobUser.get(i).getName();
+                    return recom;
+                }
+            }
+
+            return recom;
         }
     }
 
