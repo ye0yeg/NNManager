@@ -52,6 +52,8 @@ public class MyBmobPayment extends BmobObject {
 
     private Double goodTotal;
 
+    private Boolean isConfirm;
+
     public String getCreatTime() {
         return creatTime;
     }
@@ -116,6 +118,14 @@ public class MyBmobPayment extends BmobObject {
 
     public void setShippingCom(String shippingCom) {
         this.shippingCom = shippingCom;
+    }
+
+    public Boolean getConfirm() {
+        return isConfirm;
+    }
+
+    public void setConfirm(Boolean confirm) {
+        isConfirm = confirm;
     }
 
     public static class GoodState {

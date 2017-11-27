@@ -55,6 +55,11 @@
         <activity
             android:name=".feature.ManagerPaymentActivity"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".feature.FinancialActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 

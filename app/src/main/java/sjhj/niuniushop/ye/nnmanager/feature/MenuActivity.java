@@ -2,6 +2,8 @@ package sjhj.niuniushop.ye.nnmanager.feature;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
@@ -10,13 +12,21 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
+import es.dmoral.toasty.Toasty;
 import sjhj.niuniushop.ye.nnmanager.R;
 import sjhj.niuniushop.ye.nnmanager.base.BaseActivity;
 import sjhj.niuniushop.ye.nnmanager.network.UserManager;
 import sjhj.niuniushop.ye.nnmanager.network.core.ResponseEntity;
+import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobPayment;
 
 /**
  * Created by ye on 2017/11/8.
@@ -25,6 +35,7 @@ import sjhj.niuniushop.ye.nnmanager.network.core.ResponseEntity;
 public class MenuActivity extends BaseActivity {
 
 
+    private static final int SETCONFIRM = 1001;
     @BindView(R.id.text_me)
     TextView tvMe;
     @BindView(R.id.text_customer_manager)
@@ -55,6 +66,14 @@ public class MenuActivity extends BaseActivity {
 
     @BindView(R.id.button_sign_out)
     Button btnSignOut;
+
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
 
 
     @Override

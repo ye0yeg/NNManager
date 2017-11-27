@@ -40,7 +40,7 @@
                 style="@style/HorizontalItemTextView"
                 android:drawableLeft="@drawable/ic_help"
                 android:gravity="center_vertical"
-                android:text="订单管理<业务员>"/>
+                android:text="订单管理-业务员"/>
         </FrameLayout>
 
         <!--财务审核-->

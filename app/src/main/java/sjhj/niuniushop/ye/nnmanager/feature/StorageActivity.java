@@ -46,35 +46,35 @@ public class StorageActivity extends BaseActivity {
         query.findObjects(getApplicationContext(), new FindListener<MyBmobPayment>() {
             @Override
             public void onSuccess(List<MyBmobPayment> list) {
-                if (list.size() > 0) {
-                    //获得总数据
-                    BmobQuery<MyBmobUser> myBmobUserBmobQuery = new BmobQuery<MyBmobUser>();
-                    myBmobUserBmobQuery.order("-createdAt");
-                    myBmobUserBmobQuery.setLimit(500);
-                    myBmobUserBmobQuery.findObjects(StorageActivity.this, new FindListener<MyBmobUser>() {
-                        @Override
-                        public void onSuccess(List<MyBmobUser> list) {
-                            for (int i = 0; i < list.size(); i++) {
-                                allMyBmobUser.add(list.get(i));
-                                if (list.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
-                                    mMyBmobUsers.add(list.get(i));
-                                    System.out.println(list.get(i).toString());
-                                }
-                            }
-
-                            mHandler.sendEmptyMessage(GETDATASUCCESS);
-                        }
-
-                        @Override
-                        public void onError(int i, String s) {
-
-                        }
-                    });
-
-                } else {
-                    //无信息提示
-                }
-
+//                if (list.size() > 0) {
+//                    //获得总数据
+//                    BmobQuery<MyBmobUser> myBmobUserBmobQuery = new BmobQuery<MyBmobUser>();
+//                    myBmobUserBmobQuery.order("-createdAt");
+//                    myBmobUserBmobQuery.setLimit(500);
+//                    myBmobUserBmobQuery.findObjects(StorageActivity.this, new FindListener<MyBmobUser>() {
+//                        @Override
+//                        public void onSuccess(List<MyBmobUser> list) {
+//                            for (int i = 0; i < list.size(); i++) {
+//                                allMyBmobUser.add(list.get(i));
+//                                if (list.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
+//                                    mMyBmobUsers.add(list.get(i));
+//                                    System.out.println(list.get(i).toString());
+//                                }
+//                            }
+//
+//                            mHandler.sendEmptyMessage(GETDATASUCCESS);
+//                        }
+//
+//                        @Override
+//                        public void onError(int i, String s) {
+//
+//                        }
+//                    });
+//
+//                } else {
+//                    //无信息提示
+//                }
+//
 
             }
 
