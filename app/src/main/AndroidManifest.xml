@@ -60,6 +60,9 @@
             android:name=".feature.FinancialActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".feature.StorageActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 

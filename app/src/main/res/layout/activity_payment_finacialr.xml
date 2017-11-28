@@ -9,16 +9,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/text_is_hot"
+            android:id="@+id/text_is_not_confirm"
             style="@style/QueryOrderTab"
             android:drawableRight="@drawable/refresh_logo_inactive"
-            android:text="@string/search_order_is_hot"/>
+            android:text="未审核"/>
 
         <TextView
-            android:id="@+id/text_most_expensive"
+            android:id="@+id/text_is_confirm"
             style="@style/QueryOrderTab"
             android:drawableRight="@drawable/refresh_logo_active"
-            android:text="@string/search_order_price"/>
+            android:text="已审核"/>
 
 
     </LinearLayout>

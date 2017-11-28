@@ -4,9 +4,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -21,7 +18,7 @@ import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobUser;
  * Created by ye on 2017/11/9.
  */
 
-abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, PaymentManagerListAdapter.ViewHolder> {
+abstract class StoragerListAdapter extends BaseListAdapter<MyBmobPayment, StoragerListAdapter.ViewHolder> {
 
 
     private ArrayList<MyBmobUser> myBmobUserArrayList1 = new ArrayList<>();
@@ -41,14 +38,13 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     protected abstract void onShippingCheck(MyBmobPayment myBmobPayment);
 
-    protected abstract String getRecom(MyBmobPayment myBmobPayment);
 
-    public PaymentManagerListAdapter(final ArrayList<MyBmobUser> myBmobUserArrayList) {
+    public StoragerListAdapter(final ArrayList<MyBmobUser> myBmobUserArrayList) {
         //这玩意儿一直是空的。 但是那玩意儿都有值
         myBmobUserArrayList1 = myBmobUserArrayList;
     }
 
-    public PaymentManagerListAdapter() {
+    public StoragerListAdapter() {
 
     }
 
@@ -93,9 +89,6 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @BindView(R.id.text_payment_info)
         TextView tvOrderInfo;
 
-        //推荐人
-        @BindView(R.id.text_payment_recom_person)
-        TextView tvRecomPerson;
 
         //备注
         @BindView(R.id.text_payment_note)
@@ -136,7 +129,6 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             tvRecipients.setVisibility(View.VISIBLE);
             tvSigninTime.setVisibility(View.VISIBLE);
             tvOrderNUmber.setVisibility(View.VISIBLE);
-//            tvRecomPerson.setVisibility(View.VISIBLE);
 
 
             String orderSn = getContext().getString(R.string.payment_is_detail, mMyBmobPayment.getGoodTitle());

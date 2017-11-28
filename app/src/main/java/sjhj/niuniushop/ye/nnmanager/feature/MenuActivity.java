@@ -97,7 +97,7 @@ public class MenuActivity extends BaseActivity {
         } else if (rank_level == 5) {
             //显示财务审核管理
             flFinacial.setVisibility(View.VISIBLE);
-
+            flStorage.setVisibility(View.VISIBLE);
         } else if (rank_level == 6) {
             //显示仓库管理
             flStorage.setVisibility(View.VISIBLE);

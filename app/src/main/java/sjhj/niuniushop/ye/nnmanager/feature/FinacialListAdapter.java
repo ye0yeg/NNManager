@@ -16,6 +16,7 @@ import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobPayment;
  */
 
 abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, FinacialListAdapter.ViewHolder> {
+    private String mState;
     // 仓库审核，需要添加一个字段用来审核仓库。
 
     //refresh_logo_inactive , activited
@@ -42,18 +43,23 @@ abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, Finaci
         LinearLayout goodsLayout;
 
         @BindView(R.id.text_order_sn)
-         TextView tvDetail;
+        TextView tvDetail;
         @BindView(R.id.text_order_time)
-         TextView tvOrderTime;
+        TextView tvOrderTime;
         @BindView(R.id.text_order_number)
-         TextView tvOrderNumber;
+        TextView tvOrderNumber;
         @BindView(R.id.text_order_attach)
-         TextView tvAttach;
+        TextView tvAttach;
         @BindView(R.id.text_order_total)
-         TextView tvTotal;
+        TextView tvTotal;
+        @BindView(R.id.text_apply)
+        TextView tvState;
+        @BindView(R.id.text_order_person)
+        TextView tvPerson;
+
 
         @BindView(R.id.button_confirm)
-         Button btnConfirm;
+        Button btnConfirm;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -72,11 +78,22 @@ abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, Finaci
             String orderNumber = getContext().getString(R.string.payment_is_order_number, mMyBmobPayment.getOrdernumber());
             tvOrderNumber.setText(orderNumber);
 
+            String orderPerson = getContext().getString(R.string.payment_is_recipients, mMyBmobPayment.getBuyer());
+            tvPerson.setText(orderPerson);
+
 //            String attach = getContext().getString(R.string.payment_is_address, mMyBmobPayment
 
-            String total = getContext().getString(R.string.payment_is_order_total,mMyBmobPayment.getGoodTotal()+"");
+            String total = getContext().getString(R.string.payment_is_order_total, mMyBmobPayment.getGoodTotal() + "");
             tvTotal.setText(total);
 
+            if (mMyBmobPayment.getConfirm()) {
+                mState = "通过审核！";
+            } else {
+                mState = "未通过审核！";
+            }
+
+            String State = getContext().getString(R.string.payment_is_order_confirm, mState);
+            tvState.setText(State);
             goodsLayout.removeAllViews();
         }
 
