@@ -29,7 +29,7 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     @Override
     protected int getItemViewLayout() {
-        return R.layout.item_order_user;
+        return R.layout.item_order_payment;
     }
 
     @Override
@@ -45,7 +45,7 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     public PaymentManagerListAdapter(final ArrayList<MyBmobUser> myBmobUserArrayList) {
         //这玩意儿一直是空的。 但是那玩意儿都有值
-        myBmobUserArrayList1 = myBmobUserArrayList;
+//        myBmobUserArrayList1 = myBmobUserArrayList;
     }
 
     public PaymentManagerListAdapter() {
@@ -128,8 +128,8 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 //            }
 
             mGoodState = mMyBmobPayment.getGoodState();
-            String shippingState = null;
-            String orderInfo = null;
+//            String shippingState = null;
+//            String orderInfo = null;
             tvDetail.setVisibility(View.VISIBLE);
             tvPhone.setVisibility(View.VISIBLE);
             tvAddress.setVisibility(View.VISIBLE);
@@ -159,29 +159,34 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
 //            String recomPerson = getContext().getString(R.string.payment_is_order_recom, recom);
 //            tvRecomPerson.setText(recomPerson);
+            //可查看所有已支付和未支付的订单，并且看其类型
 
-            if (mGoodState.getDeliery()) {
-                llOrderInfo.setVisibility(View.VISIBLE);
-                //已发货  -    > 可查看物流 ， 可更新订单号
-                shippingState = getContext().getString(R.string.payment_is_shiping);
-                btnSudo.setText(getContext().getString(R.string.payment_text_checkshipping));
-                orderInfo = "快递名称：" + mMyBmobPayment.getShippingCom() +
-                        "    单号：" + mMyBmobPayment.getShippingOrder();
-                tvOrderInfo.setText(orderInfo);
-            } else if (mGoodState.getShipping()) {
-                llOrderInfo.setVisibility(View.GONE);
-                // 等待发货
-                shippingState = "待发货!";
-                btnSudo.setText("修改发货");
-            } else if (!mMyBmobPayment.getPay()) {
-                llOrderInfo.setVisibility(View.GONE);
-                //未付款
-                shippingState = "未支付!";
-                btnSudo.setText("修改状态");
-            }
-            //发货状态
-            String level = getContext().getString(R.string.payment_is_order_state, shippingState);
-            tvSudo.setText(level);
+            //订单。
+            //查看所有订单
+
+//            if (mGoodState.getDeliery()) {
+//                llOrderInfo.setVisibility(View.VISIBLE);
+//                //已发货  -    > 可查看物流 ， 可更新订单号
+//                shippingState = getContext().getString(R.string.payment_is_shiping);
+//                btnSudo.setText(getContext().getString(R.string.payment_text_checkshipping));
+//                orderInfo = "快递名称：" + mMyBmobPayment.getShippingCom() +
+//                        "    单号：" + mMyBmobPayment.getShippingOrder();
+//                tvOrderInfo.setText(orderInfo);
+//            } else if (mGoodState.getShipping()) {
+//                llOrderInfo.setVisibility(View.GONE);
+//                // 等待发货
+//                shippingState = "待发货!";
+//                btnSudo.setText("修改发货");
+//            } else if (!mMyBmobPayment.getPay()) {
+//                llOrderInfo.setVisibility(View.GONE);
+//                //未付款
+//                shippingState = "未支付!";
+//                btnSudo.setText("修改状态");
+//            }
+
+            //金额
+            String total = getContext().getString(R.string.payment_is_order_total, mMyBmobPayment.getGoodTotal() + "");
+            tvSudo.setText(total);
 
 //            String recom = getContext().getString(R.string.payment_is_order_recom, getRecom(mMyBmobPayment));
 //            tvRecomPerson.setText(recom);
@@ -192,14 +197,11 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @OnClick(R.id.btn_change_sudo)
         void onClick(View view) {
             if (view.getId() == R.id.btn_change_sudo) {
-                if (mMyBmobPayment.getGoodState().getDeliery()) {
-                    onShippingCheck(mMyBmobPayment);
-                    return;
-                }
                 onSudoChanger(mMyBmobPayment);
             }
 
         }
+
 
     }
 }

@@ -72,7 +72,7 @@ public class ManagerPaymentActivity extends BaseActivity {
                     if (mMyBmobUsers.get(i).getRecomNumber().equals(UserManager.getInstance().getUser().getName())) {
                         //双循环，可以实现信息
                         for (int j = 0; j < allData.size(); j++) {
-                            if (allData.get(j).getName().equals(mMyBmobUsers.get(i).getName()) && allData.get(j).getPay()) {
+                            if (allData.get(j).getName().equals(mMyBmobUsers.get(i).getName()) && allData.get(j).getPay() && !allData.get(j).getConfirm()) {
                                 //查看所有已经支付的订单。加入订单管理
                                 mMyBmobPayments.add(allData.get(j));
                                 System.out.println(allData.get(j).toString());
@@ -80,8 +80,6 @@ public class ManagerPaymentActivity extends BaseActivity {
                         }
                     }
                 }
-
-
                 if (UserManager.getInstance().getUser().getName().equals("15959207612") || UserManager.getInstance().getUser().getRank_level().equals("101")) {
                     // 过滤信息
                     for (int j = 0; j < allData.size(); j++) {
@@ -196,103 +194,145 @@ public class ManagerPaymentActivity extends BaseActivity {
 
         @Override
         protected void onSudoChanger(final MyBmobPayment myBmobPayment) {
+            //这里用来修改金额
 
-//            if (UserManager.getInstance().getUser().getName().equals("15959207612")) {
-//                Toasty.error(ManagerPaymentActivity.this, "您无权进行修改").show();
-//                return;
+            DialogUIUtils.showAlert(ManagerPaymentActivity.this, "修改金额", "", "收件人(非必填)", "输入修改的金额", "确定", "取消"
+                    , false, true, true, new DialogUIListener() {
+
+                        private String mOrdernumber;
+                        private String mCom;
+
+                        @Override
+                        public void onPositive() {
+                            //已发货
+
+                            Toasty.success(ManagerPaymentActivity.this, "已修改金额!").show();
+
+
+                        }
+
+                        @Override
+                        public void onNegative() {
+                            Toasty.info(ManagerPaymentActivity.this, "您已取消修改!").show();
+                        }
+
+                        @Override
+                        public void onGetInput(CharSequence input1, CharSequence input2) {
+                            super.onGetInput(input1, input2);
+                            String name = input1 + "";
+                            String total = input2 + "";
+
+                            myBmobPayment.setGoodTotal(Double.valueOf(total));
+
+                            myBmobPayment.update(ManagerPaymentActivity.this, myBmobPayment.getObjectId(), new UpdateListener() {
+
+                                @Override
+                                public void onSuccess() {
+                                    Toasty.success(getApplicationContext(), "修改成功!").show();
+                                    mHandler.sendEmptyMessage(CHANGESUCCESS);
+                                }
+
+                                @Override
+                                public void onFailure(int i, String s) {
+                                    Toasty.error(getApplicationContext(), "修改失败" + s).show();
+                                    mHandler.sendEmptyMessage(FAILD);
+                                }
+                            });
+                        }
+                    }).show();
+
+
+//            int pos = 0;
+//            if (myBmobPayment.getGoodState().getShipping()) {
+//                pos = 0;
+//            } else if (myBmobPayment.getGoodState().getDeliery()) {
+//                pos = 1;
 //            }
+//            //修改订单状态
+//            String[] ShippingName = {"待发货", "已发货"};
+//            DialogUIUtils.showSingleChoose(ManagerPaymentActivity.this, "发货修改", pos, ShippingName, new DialogUIItemListener() {
+//                @Override
+//                public void onItemClick(CharSequence text, int position) {
+//
+//                    if (position == 0) {
+//                        // 待发货
+//                        myBmobPayment.getGoodState().setDeliery(false);
+//                        myBmobPayment.getGoodState().setShipping(true);
+//                        Toasty.success(getApplicationContext(), "状态修改成功!").show();
+//                        myBmobPayment.update(ManagerPaymentActivity.this, myBmobPayment.getObjectId(), new UpdateListener() {
+//
+//                            @Override
+//                            public void onSuccess() {
+//                                Toasty.success(getApplicationContext(), "状态修改成功!").show();
+//
+//                                mHandler.sendEmptyMessage(CHANGESUCCESS);
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int i, String s) {
+//                                Toasty.error(getApplicationContext(), "状态修失败" + s).show();
+//                                mHandler.sendEmptyMessage(FAILD);
+//                            }
+//                        });
+//
+//
+//                    } else if (position == 1) {
+//
+//                        DialogUIUtils.showAlert(ManagerPaymentActivity.this, "物流", "", "输入物流公司", "输入物流编号", "确定", "取消"
+//                                , false, true, true, new DialogUIListener() {
+//
+//                                    private String mOrdernumber;
+//                                    private String mCom;
+//
+//                                    @Override
+//                                    public void onPositive() {
+//                                        //已发货
+//                                        myBmobPayment.getGoodState().setDeliery(true);
+//                                        myBmobPayment.getGoodState().setShipping(false);
+//
+//
+//                                        Toasty.success(ManagerPaymentActivity.this, "已修改为发货").show();
+//
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onNegative() {
+//                                        Toasty.info(ManagerPaymentActivity.this, "您已取消修改").show();
+//                                    }
+//
+//                                    @Override
+//                                    public void onGetInput(CharSequence input1, CharSequence input2) {
+//                                        super.onGetInput(input1, input2);
+//                                        mCom = input1 + "";
+//                                        mOrdernumber = input2 + "";
+//                                        myBmobPayment.setShippingCom(mCom);
+//                                        myBmobPayment.setShippingOrder(mOrdernumber);
+//
+//                                        myBmobPayment.update(ManagerPaymentActivity.this, myBmobPayment.getObjectId(), new UpdateListener() {
+//
+//                                            @Override
+//                                            public void onSuccess() {
+//                                                Toasty.success(getApplicationContext(), "状态修改成功!").show();
+//                                                mHandler.sendEmptyMessage(CHANGESUCCESS);
+//                                            }
+//
+//                                            @Override
+//                                            public void onFailure(int i, String s) {
+//                                                Toasty.error(getApplicationContext(), "状态修失败" + s).show();
+//                                                mHandler.sendEmptyMessage(FAILD);
+//                                            }
+//                                        });
+//                                    }
+//                                }).show();
 
-            int pos = 0;
-            if (myBmobPayment.getGoodState().getShipping()) {
-                pos = 0;
-            } else if (myBmobPayment.getGoodState().getDeliery()) {
-                pos = 1;
-            }
-            //修改订单状态
-            String[] ShippingName = {"待发货", "已发货"};
-            DialogUIUtils.showSingleChoose(ManagerPaymentActivity.this, "发货修改", pos, ShippingName, new DialogUIItemListener() {
-                @Override
-                public void onItemClick(CharSequence text, int position) {
-
-                    if (position == 0) {
-                        // 待发货
-                        myBmobPayment.getGoodState().setDeliery(false);
-                        myBmobPayment.getGoodState().setShipping(true);
-                        Toasty.success(getApplicationContext(), "状态修改成功!").show();
-                        myBmobPayment.update(ManagerPaymentActivity.this, myBmobPayment.getObjectId(), new UpdateListener() {
-
-                            @Override
-                            public void onSuccess() {
-                                Toasty.success(getApplicationContext(), "状态修改成功!").show();
-
-                                mHandler.sendEmptyMessage(CHANGESUCCESS);
-                            }
-
-                            @Override
-                            public void onFailure(int i, String s) {
-                                Toasty.error(getApplicationContext(), "状态修失败" + s).show();
-                                mHandler.sendEmptyMessage(FAILD);
-                            }
-                        });
-
-
-                    } else if (position == 1) {
-
-                        DialogUIUtils.showAlert(ManagerPaymentActivity.this, "物流", "", "输入物流公司", "输入物流编号", "确定", "取消"
-                                , false, true, true, new DialogUIListener() {
-
-                                    private String mOrdernumber;
-                                    private String mCom;
-
-                                    @Override
-                                    public void onPositive() {
-                                        //已发货
-                                        myBmobPayment.getGoodState().setDeliery(true);
-                                        myBmobPayment.getGoodState().setShipping(false);
-
-
-                                        Toasty.success(ManagerPaymentActivity.this, "已修改为发货").show();
-
-
-                                    }
-
-                                    @Override
-                                    public void onNegative() {
-                                        Toasty.info(ManagerPaymentActivity.this, "您已取消修改").show();
-                                    }
-
-                                    @Override
-                                    public void onGetInput(CharSequence input1, CharSequence input2) {
-                                        super.onGetInput(input1, input2);
-                                        mCom = input1 + "";
-                                        mOrdernumber = input2 + "";
-                                        myBmobPayment.setShippingCom(mCom);
-                                        myBmobPayment.setShippingOrder(mOrdernumber);
-
-                                        myBmobPayment.update(ManagerPaymentActivity.this, myBmobPayment.getObjectId(), new UpdateListener() {
-
-                                            @Override
-                                            public void onSuccess() {
-                                                Toasty.success(getApplicationContext(), "状态修改成功!").show();
-                                                mHandler.sendEmptyMessage(CHANGESUCCESS);
-                                            }
-
-                                            @Override
-                                            public void onFailure(int i, String s) {
-                                                Toasty.error(getApplicationContext(), "状态修失败" + s).show();
-                                                mHandler.sendEmptyMessage(FAILD);
-                                            }
-                                        });
-                                    }
-                                }).show();
-
-
-                    }
-
-                }
-            }).show();
-
-            //查看物流
+//
+//                    }
+//
+//                }
+//            }).show();
+//
+//            //查看物流
 
         }
 

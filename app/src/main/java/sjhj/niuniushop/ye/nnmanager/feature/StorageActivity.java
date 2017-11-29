@@ -1,5 +1,10 @@
 package sjhj.niuniushop.ye.nnmanager.feature;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ListView;
@@ -273,6 +278,16 @@ public class StorageActivity extends BaseActivity {
         @Override
         protected void onShippingCheck(MyBmobPayment myBmobPayment) {
 
+            //获取剪贴板管理器：
+            ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            // 创建普通字符型ClipData
+            ClipData mClipData = ClipData.newPlainText("Label", myBmobPayment.getShippingOrder());
+            // 将ClipData内容放到系统剪贴板里。
+            cm.setPrimaryClip(mClipData);
+            Toasty.info(StorageActivity.this, "已将运单复制到剪切板 !").show();
+            Uri uri = Uri.parse("http://www.kuaidi100.com/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
     }
 }
