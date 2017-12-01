@@ -101,6 +101,9 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @BindView(R.id.text_payment_note)
         TextView tvNote;
 
+        @BindView(R.id.text_payment_payment_type)
+        TextView tvPayType;
+
         private MyBmobPayment mMyBmobPayment;
 
 
@@ -118,14 +121,15 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         protected void bind(int position) {
             mMyBmobPayment = getItem(position);
 
-//            String recom = null;
-//            //查找推荐人
-//            for (int i = 0; i < myBmobUserArrayList1.size(); i++) {
-//                if (mMyBmobPayment.getName().equals(myBmobUserArrayList1.get(i).getRecomNumber())) {
-//                    recom = myBmobUserArrayList1.get(i).getName();
-//                    continue;
-//                }
-//            }
+
+            String recom = "无";
+            //查找推荐人
+            for (int i = 0; i < myBmobUserArrayList1.size(); i++) {
+                if (mMyBmobPayment.getName().equals(myBmobUserArrayList1.get(i).getRecomNumber())) {
+                    recom = myBmobUserArrayList1.get(i).getName();
+                    continue;
+                }
+            }
 
             mGoodState = mMyBmobPayment.getGoodState();
 //            String shippingState = null;
@@ -136,7 +140,7 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             tvRecipients.setVisibility(View.VISIBLE);
             tvSigninTime.setVisibility(View.VISIBLE);
             tvOrderNUmber.setVisibility(View.VISIBLE);
-//            tvRecomPerson.setVisibility(View.VISIBLE);
+            tvRecomPerson.setVisibility(View.VISIBLE);
 
 
             String orderSn = getContext().getString(R.string.payment_is_detail, mMyBmobPayment.getGoodTitle());
@@ -157,8 +161,57 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             String orderNumber = getContext().getString(R.string.payment_is_order_number, mMyBmobPayment.getOrdernumber());
             tvOrderNUmber.setText(orderNumber);
 
-//            String recomPerson = getContext().getString(R.string.payment_is_order_recom, recom);
-//            tvRecomPerson.setText(recomPerson);
+            //How to get Those Thing
+
+            //分类支付方式
+
+            /*
+            * 1001
+            * 支付宝
+            * 1002
+            * 微信
+            * 1003
+            * 银联
+            * 1004
+            * 余额
+            * 1005
+            * 货到付款
+    ALI_PAY = 1001;
+    WECHAT_PAY = 1002;
+    BANKPAY = 1003;
+    NIUNIU_PAY = 1004;
+    COD = 1005;
+            * */
+
+            System.out.println(mMyBmobPayment.getPayType());
+            String thePayType = "未填写";
+            String typeCode;
+            if (mMyBmobPayment.getPayType() != null && !mMyBmobPayment.getPayType().isEmpty()) {
+                //跳出判断
+            } else {
+                typeCode = mMyBmobPayment.getPayType();
+
+                if (typeCode.equals("1001")) {
+                    thePayType = "支付宝支付";
+                } else if (typeCode.equals("1002")) {
+                    thePayType = "微信支付";
+                } else if (typeCode.equals("1003")) {
+                    thePayType = "银联支付";
+                } else if (typeCode.equals("1004")) {
+                    thePayType = "牛牛余额支付";
+                } else if (typeCode.equals("1005")) {
+                    thePayType = "货到付款";
+                }
+            }
+
+
+
+            String payType = getContext().getString(R.string.payment_is_order_type, thePayType);
+            tvPayType.setText(payType);
+
+            //推荐人
+            String recomPerson = getContext().getString(R.string.payment_is_order_recom, recom);
+            tvRecomPerson.setText(recomPerson);
             //可查看所有已支付和未支付的订单，并且看其类型
 
             //订单。

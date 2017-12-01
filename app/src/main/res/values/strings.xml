@@ -131,6 +131,7 @@
     <string name="payment_is_order_attach">备注： %s</string>
     <string name="payment_is_order_total">金额： %s</string>
     <string name="payment_is_order_confirm">审核状态： %s</string>
+    <string name="payment_is_order_type">支付方式： %s</string>
 
 
     <string name="collect_title">收藏列表</string>

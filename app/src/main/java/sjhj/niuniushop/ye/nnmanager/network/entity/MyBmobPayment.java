@@ -54,6 +54,8 @@ public class MyBmobPayment extends BmobObject {
 
     private Boolean isConfirm;
 
+    private String payType;
+
     public String getCreatTime() {
         return creatTime;
     }
@@ -126,6 +128,14 @@ public class MyBmobPayment extends BmobObject {
 
     public void setConfirm(Boolean confirm) {
         isConfirm = confirm;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
     }
 
     public static class GoodState {
