@@ -43,6 +43,7 @@
         android:textAppearance="@style/ContentText.FixedSmall"
         android:visibility="gone"/>
 
+
     <!-- 地址 : address -->
     <TextView
         android:id="@+id/text_manager_address"
@@ -66,6 +67,19 @@
         android:paddingLeft="@dimen/spacing_normal"
         android:paddingRight="@dimen/spacing_normal"
         android:text="text_manager_people"
+        android:textAppearance="@style/ContentText.FixedSmall"
+        android:visibility="gone"/>
+
+    <!-- 权限  -->
+    <TextView
+        android:id="@+id/text_manager_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="text_manager_level"
         android:textAppearance="@style/ContentText.FixedSmall"
         android:visibility="gone"/>
 

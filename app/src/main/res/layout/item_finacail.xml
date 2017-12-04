@@ -27,6 +27,27 @@
         android:text="收件人"
         android:textAppearance="@style/ContentText.FixedSmall"/>
 
+    <TextView
+        android:id="@+id/text_order_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="用户权限"
+        android:textAppearance="@style/ContentText.FixedSmall"/>
+
+    <TextView
+        android:id="@+id/text_order_recom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="推荐人"
+        android:textAppearance="@style/ContentText.FixedSmall"/>
 
 
 
@@ -75,6 +96,19 @@
         android:text="金额"
         android:textAppearance="@style/ContentText.FixedSmall"
         android:textColor="#ff0000"/>
+
+    <TextView
+        android:id="@+id/text_payment_payment_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_tiny"
+        android:gravity="left"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:text="支付方式"
+        android:textAppearance="@style/ContentText.FixedSmall"
+        android:textColor="#ff2122"/>
+
 
 
     <LinearLayout

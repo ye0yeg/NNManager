@@ -16,7 +16,7 @@ import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobPayment;
  */
 
 abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, FinacialListAdapter.ViewHolder> {
-    private String mState;
+    private String mState = "无";
     // 仓库审核，需要添加一个字段用来审核仓库。
 
     //refresh_logo_inactive , activited
@@ -33,6 +33,10 @@ abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, Finaci
     }
 
     protected abstract void onSudoChanger(MyBmobPayment myBmobUser);
+
+    protected abstract String getRecom(String myBmobPayment);
+
+    protected abstract String getLevel(String myBmobPayment);
 
 
     class ViewHolder extends BaseListAdapter.ViewHolder {
@@ -56,7 +60,12 @@ abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, Finaci
         TextView tvState;
         @BindView(R.id.text_order_person)
         TextView tvPerson;
-
+        @BindView(R.id.text_order_recom)
+        TextView tvRecom;
+        @BindView(R.id.text_order_level)
+        TextView tvLevel;
+        @BindView(R.id.text_payment_payment_type)
+        TextView tvPayType;
 
         @BindView(R.id.button_confirm)
         Button btnConfirm;
@@ -69,6 +78,12 @@ abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, Finaci
         @Override
         protected void bind(int position) {
             mMyBmobPayment = getItem(position);
+
+
+            String recom = getRecom(mMyBmobPayment.getName());
+            String rankLevel = getLevel(mMyBmobPayment.getName());
+
+
             String orderSn = getContext().getString(R.string.payment_is_detail, mMyBmobPayment.getGoodTitle());
             tvDetail.setText(orderSn);
 
@@ -81,17 +96,56 @@ abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, Finaci
             String orderPerson = getContext().getString(R.string.payment_is_recipients, mMyBmobPayment.getBuyer());
             tvPerson.setText(orderPerson);
 
+
 //            String attach = getContext().getString(R.string.payment_is_address, mMyBmobPayment
+            String thePayType = "未填写";
+            String typeCode;
+            //
+            if (mMyBmobPayment.getPayType() == null) {
+                //跳出判断
+            } else {
+                typeCode = mMyBmobPayment.getPayType();
+
+                if (typeCode.equals("1001")) {
+                    thePayType = "支付宝支付";
+                } else if (typeCode.equals("1002")) {
+                    thePayType = "微信支付";
+                } else if (typeCode.equals("1003")) {
+                    thePayType = "银联支付";
+                } else if (typeCode.equals("1004")) {
+                    thePayType = "牛牛余额支付";
+                } else if (typeCode.equals("1005")) {
+                    thePayType = "货到付款";
+                }
+            }
+
+
+            String payType = getContext().getString(R.string.payment_is_order_type, thePayType);
+            tvPayType.setText(payType);
+
+
+            //推荐人
+            String recomPerson = getContext().getString(R.string.payment_is_order_recom, recom);
+            tvRecom.setText(recomPerson);
+
+            //LEVLE
+            String level = getContext().getString(R.string.payment_is_order_level, rankLevel);
+            tvLevel.setText(level);
 
             String total = getContext().getString(R.string.payment_is_order_total, mMyBmobPayment.getGoodTotal() + "");
             tvTotal.setText(total);
 
-            if (mMyBmobPayment.getConfirm()) {
-                mState = "通过审核！";
-            } else {
-                mState = "未通过审核！";
-            }
+            if (mMyBmobPayment.getConfirm() == null) {
 
+            } else {
+
+                if (mMyBmobPayment.getConfirm()) {
+                    mState = "通过审核！";
+                } else {
+                    mState = "未通过审核！";
+                }
+
+            }
             String State = getContext().getString(R.string.payment_is_order_confirm, mState);
             tvState.setText(State);
             goodsLayout.removeAllViews();

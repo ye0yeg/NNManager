@@ -4,36 +4,32 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.UpdateListener;
-import es.dmoral.toasty.Toasty;
 import sjhj.niuniushop.ye.nnmanager.R;
+import sjhj.niuniushop.ye.nnmanager.base.APKVersionCdeUtils;
 import sjhj.niuniushop.ye.nnmanager.base.BaseActivity;
+import sjhj.niuniushop.ye.nnmanager.base.wrapper.BadgeWrapper;
 import sjhj.niuniushop.ye.nnmanager.network.UserManager;
 import sjhj.niuniushop.ye.nnmanager.network.core.ResponseEntity;
-import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobPayment;
 
 /**
  * Created by ye on 2017/11/8.
  */
 
 public class MenuActivity extends BaseActivity {
-
+    private static final int GETNEWVERSION = 1002;
+    private int mUpdateNumber;
+    private String mVersionCode;
 
     private static final int SETCONFIRM = 1001;
     @BindView(R.id.text_me)
@@ -63,7 +59,7 @@ public class MenuActivity extends BaseActivity {
     @BindView(R.id.fl_storage_manager)
     FrameLayout flStorage;
 
-
+    private BadgeWrapper mUpadate;
     @BindView(R.id.button_sign_out)
     Button btnSignOut;
 
@@ -72,6 +68,9 @@ public class MenuActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            if (msg.what == GETNEWVERSION) {
+                mUpadate.showNumber(mUpdateNumber);
+            }
         }
     };
 
@@ -83,6 +82,8 @@ public class MenuActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        mUpadate = new BadgeWrapper(tvUpdate);
+        initUpdate();
         int rank_level = UserManager.getInstance().getUser().getRank_level();
         tvMe.setText("您好：" + UserManager.getInstance().getUser().getName());
         //角色 分类。
@@ -103,6 +104,28 @@ public class MenuActivity extends BaseActivity {
         }
 
 
+    }
+
+
+    private void initUpdate() {
+        BmobQuery<MyBackUpdateCheck> query = new BmobQuery<>();
+        query.findObjects(getApplicationContext(), new FindListener<MyBackUpdateCheck>() {
+            @Override
+            public void onSuccess(List<MyBackUpdateCheck> list) {
+                if (list.size() >= 0) {
+                    mUpdateNumber = list.get(0).getHasUpdate();
+                    mVersionCode = list.get(0).getVersionCode();
+                }
+                if ((mUpdateNumber == 1) && (Integer.valueOf(mVersionCode) != APKVersionCdeUtils.getVersionCode(getApplicationContext()))) {
+                    mHandler.sendEmptyMessage(GETNEWVERSION);
+                }
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+        });
     }
 
     @Override

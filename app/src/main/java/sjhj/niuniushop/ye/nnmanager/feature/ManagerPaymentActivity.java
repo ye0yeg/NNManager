@@ -64,7 +64,6 @@ public class ManagerPaymentActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == GETDATASUCCESS) {
-
                 mMyAdapter = new MyAdapter(allMyBmobUser);
                 userListView.setAdapter(mMyAdapter);
                 //获得信息，分类信息
@@ -80,7 +79,8 @@ public class ManagerPaymentActivity extends BaseActivity {
                         }
                     }
                 }
-                if (UserManager.getInstance().getUser().getName().equals("15959207612") || UserManager.getInstance().getUser().getRank_level().equals("101")) {
+                //15959207612
+                if (UserManager.getInstance().getUser().getName().equals("15006092885") || UserManager.getInstance().getUser().getName().equals("15959207612") || UserManager.getInstance().getUser().getRank_level().equals("101")) {
                     // 过滤信息
                     for (int j = 0; j < allData.size(); j++) {
                         if (allData.get(j).getPay()) {
@@ -352,18 +352,39 @@ public class ManagerPaymentActivity extends BaseActivity {
         }
 
         @Override
-        protected String getRecom(MyBmobPayment myBmobPayment) {
+        protected String getRecom(String myBmobPayment) {
 
-            String recom = null;
-            //查找推荐人
+            String recom = "无";
+            //查找推荐人 get data.
             for (int i = 0; i < allMyBmobUser.size(); i++) {
-                if (myBmobPayment.getName().equals(allMyBmobUser.get(i).getRecomNumber())) {
-                    recom = allMyBmobUser.get(i).getName();
+                if (allMyBmobUser.get(i).getName().toString().trim().equals(myBmobPayment)) {
+                    recom = allMyBmobUser.get(i).getRecomNumber();
                     return recom;
                 }
             }
 
             return recom;
+        }
+
+        @Override
+        protected String getLevel(String name) {
+            String level = "未识别";
+
+            for (int i = 0; i < allMyBmobUser.size(); i++) {
+                if (allMyBmobUser.get(i).getName().equals(name)) {
+                    if (allMyBmobUser.get(i).getRank_level() == 0) {
+                        level = "车主";
+                        return level;
+                    } else if (allMyBmobUser.get(i).getRank_level() == 1) {
+                        level = "经销商";
+                        return level;
+                    } else if (allMyBmobUser.get(i).getRank_level() == 2) {
+                        level = "VIP";
+                        return level;
+                    }
+                }
+            }
+            return level;
         }
     }
 

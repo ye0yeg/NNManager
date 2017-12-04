@@ -23,7 +23,6 @@ import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobUser;
 
 abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, PaymentManagerListAdapter.ViewHolder> {
 
-
     private ArrayList<MyBmobUser> myBmobUserArrayList1 = new ArrayList<>();
 
 
@@ -41,11 +40,14 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
 
     protected abstract void onShippingCheck(MyBmobPayment myBmobPayment);
 
-    protected abstract String getRecom(MyBmobPayment myBmobPayment);
+    protected abstract String getRecom(String myBmobPayment);
+
+    protected abstract String getLevel(String myBmobPayment);
 
     public PaymentManagerListAdapter(final ArrayList<MyBmobUser> myBmobUserArrayList) {
         //这玩意儿一直是空的。 但是那玩意儿都有值
-//        myBmobUserArrayList1 = myBmobUserArrayList;
+        super();
+        myBmobUserArrayList1 = myBmobUserArrayList;
     }
 
     public PaymentManagerListAdapter() {
@@ -104,6 +106,10 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         @BindView(R.id.text_payment_payment_type)
         TextView tvPayType;
 
+        //LEVLE
+        @BindView(R.id.text_manager_level)
+        TextView tvLevel;
+
         private MyBmobPayment mMyBmobPayment;
 
 
@@ -121,15 +127,8 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
         protected void bind(int position) {
             mMyBmobPayment = getItem(position);
 
-
-            String recom = "无";
-            //查找推荐人
-            for (int i = 0; i < myBmobUserArrayList1.size(); i++) {
-                if (mMyBmobPayment.getName().equals(myBmobUserArrayList1.get(i).getRecomNumber())) {
-                    recom = myBmobUserArrayList1.get(i).getName();
-                    continue;
-                }
-            }
+            String recom = getRecom(mMyBmobPayment.getName());
+            String rankLevel = getLevel(mMyBmobPayment.getName());
 
             mGoodState = mMyBmobPayment.getGoodState();
 //            String shippingState = null;
@@ -141,6 +140,7 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             tvSigninTime.setVisibility(View.VISIBLE);
             tvOrderNUmber.setVisibility(View.VISIBLE);
             tvRecomPerson.setVisibility(View.VISIBLE);
+            tvLevel.setVisibility(View.VISIBLE);
 
 
             String orderSn = getContext().getString(R.string.payment_is_detail, mMyBmobPayment.getGoodTitle());
@@ -186,7 +186,8 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             System.out.println(mMyBmobPayment.getPayType());
             String thePayType = "未填写";
             String typeCode;
-            if (mMyBmobPayment.getPayType() != null && !mMyBmobPayment.getPayType().isEmpty()) {
+            //
+            if (mMyBmobPayment.getPayType() == null) {
                 //跳出判断
             } else {
                 typeCode = mMyBmobPayment.getPayType();
@@ -205,13 +206,19 @@ abstract class PaymentManagerListAdapter extends BaseListAdapter<MyBmobPayment, 
             }
 
 
-
             String payType = getContext().getString(R.string.payment_is_order_type, thePayType);
             tvPayType.setText(payType);
+
 
             //推荐人
             String recomPerson = getContext().getString(R.string.payment_is_order_recom, recom);
             tvRecomPerson.setText(recomPerson);
+
+            //LEVLE
+            String level = getContext().getString(R.string.payment_is_order_level, rankLevel);
+            tvLevel.setText(level);
+
+
             //可查看所有已支付和未支付的订单，并且看其类型
 
             //订单。
