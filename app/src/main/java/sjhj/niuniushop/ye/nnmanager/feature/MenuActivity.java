@@ -63,6 +63,9 @@ public class MenuActivity extends BaseActivity {
     @BindView(R.id.button_sign_out)
     Button btnSignOut;
 
+    @BindView(R.id.button_shop_upload)
+    Button btnUpload;
+
 
     private Handler mHandler = new Handler() {
         @Override
@@ -100,10 +103,16 @@ public class MenuActivity extends BaseActivity {
         } else if (rank_level == 6) {
             //显示仓库管理
             flStorage.setVisibility(View.VISIBLE);
-
+        } else if (rank_level == 1001) {
+            showAll();
         }
 
+    }
 
+    private void showAll() {
+        flFinacial.setVisibility(View.VISIBLE);
+        flStorage.setVisibility(View.VISIBLE);
+        btnUpload.setVisibility(View.VISIBLE);
     }
 
 
@@ -174,6 +183,7 @@ public class MenuActivity extends BaseActivity {
                 Intent storage = new Intent(this, StorageActivity.class);
                 startActivity(storage);
                 break;
+
         }
 
 

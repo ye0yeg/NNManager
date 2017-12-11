@@ -135,6 +135,16 @@
         </FrameLayout>
 
         <Button
+            android:visibility="gone"
+            android:id="@+id/button_shop_upload"
+            style="@style/UserInfoButton"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginRight="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="添加商户数据"
+            />
+
+        <Button
             android:id="@+id/button_sign_out"
             style="@style/UserInfoButton"
             android:layout_marginLeft="@dimen/spacing_normal"

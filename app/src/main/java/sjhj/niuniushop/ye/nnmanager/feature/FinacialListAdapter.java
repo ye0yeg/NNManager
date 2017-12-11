@@ -5,6 +5,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import sjhj.niuniushop.ye.nnmanager.R;
@@ -17,6 +21,7 @@ import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobPayment;
 
 abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, FinacialListAdapter.ViewHolder> {
     private String mState = "无";
+    private Boolean mIfConfirm;
     // 仓库审核，需要添加一个字段用来审核仓库。
 
     //refresh_logo_inactive , activited
@@ -135,11 +140,13 @@ abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, Finaci
             String total = getContext().getString(R.string.payment_is_order_total, mMyBmobPayment.getGoodTotal() + "");
             tvTotal.setText(total);
 
-            if (mMyBmobPayment.getConfirm() == null) {
+            //先判断boolean是否为空
+
+            if (mMyBmobPayment.getConfirm().toString() == "" || mMyBmobPayment.getConfirm().toString() == null) {
 
             } else {
-
-                if (mMyBmobPayment.getConfirm()) {
+                mIfConfirm = mMyBmobPayment.getConfirm();
+                if (mIfConfirm) {
                     mState = "通过审核！";
                 } else {
                     mState = "未通过审核！";
@@ -149,6 +156,36 @@ abstract class FinacialListAdapter extends BaseListAdapter<MyBmobPayment, Finaci
             String State = getContext().getString(R.string.payment_is_order_confirm, mState);
             tvState.setText(State);
             goodsLayout.removeAllViews();
+        }
+
+        public boolean isNullOrEmpty(Object obj) {
+            if (obj == null)
+                return true;
+
+            if (obj instanceof CharSequence)
+                return ((CharSequence) obj).length() == 0;
+
+            if (obj instanceof Collection)
+                return ((Collection) obj).isEmpty();
+
+            if (obj instanceof Map)
+                return ((Map) obj).isEmpty();
+
+            if (obj instanceof Object[]) {
+                Object[] object = (Object[]) obj;
+                if (object.length == 0) {
+                    return true;
+                }
+                boolean empty = true;
+                for (int i = 0; i < object.length; i++) {
+                    if (!isNullOrEmpty(object[i])) {
+                        empty = false;
+                        break;
+                    }
+                }
+                return empty;
+            }
+            return false;
         }
 
         @OnClick(R.id.button_confirm)
