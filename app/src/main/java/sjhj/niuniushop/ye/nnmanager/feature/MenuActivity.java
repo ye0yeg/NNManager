@@ -9,18 +9,22 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
+import es.dmoral.toasty.Toasty;
 import sjhj.niuniushop.ye.nnmanager.R;
 import sjhj.niuniushop.ye.nnmanager.base.APKVersionCdeUtils;
 import sjhj.niuniushop.ye.nnmanager.base.BaseActivity;
 import sjhj.niuniushop.ye.nnmanager.base.wrapper.BadgeWrapper;
 import sjhj.niuniushop.ye.nnmanager.network.UserManager;
 import sjhj.niuniushop.ye.nnmanager.network.core.ResponseEntity;
+import sjhj.niuniushop.ye.nnmanager.network.entity.MyBmobShopServer;
 
 /**
  * Created by ye on 2017/11/8.
@@ -66,6 +70,8 @@ public class MenuActivity extends BaseActivity {
     @BindView(R.id.button_shop_upload)
     Button btnUpload;
 
+    private List<MyBmobShopServer.Comment> mCommentList;
+
 
     private Handler mHandler = new Handler() {
         @Override
@@ -86,6 +92,7 @@ public class MenuActivity extends BaseActivity {
     @Override
     protected void initView() {
         mUpadate = new BadgeWrapper(tvUpdate);
+        mCommentList = new ArrayList<>();
         initUpdate();
         int rank_level = UserManager.getInstance().getUser().getRank_level();
         tvMe.setText("您好：" + UserManager.getInstance().getUser().getName());
@@ -143,7 +150,7 @@ public class MenuActivity extends BaseActivity {
     }
 
     @OnClick({R.id.text_customer_manager, R.id.text_manage_payment, R.id.text_help
-            , R.id.button_sign_out, R.id.text_update, R.id.text_customer_manager_by_seller, R.id.text_financial_manager, R.id.text_storage_manager})
+            , R.id.button_sign_out, R.id.text_update, R.id.text_customer_manager_by_seller, R.id.text_financial_manager, R.id.text_storage_manager,R.id.button_shop_upload})
     void click(View view) {
         switch (view.getId()) {
             case R.id.text_customer_manager:
@@ -183,9 +190,61 @@ public class MenuActivity extends BaseActivity {
                 Intent storage = new Intent(this, StorageActivity.class);
                 startActivity(storage);
                 break;
+            case R.id.button_shop_upload:
+                upload();
+
+
+//                Intent upload = new Intent (this, UploadActivity.class);
+//                startActivity(upload);
+                break;
 
         }
 
+
+    }
+
+    private void upload() {
+        MyBmobShopServer myBmobShopServer = new MyBmobShopServer();
+        myBmobShopServer.setAddress("xx省xx市xx县xx村xx社xx拐角xx门牌号xx间xx床位");
+        myBmobShopServer.setShopName("店名示例");
+        myBmobShopServer.setShopOwner("店主实例");
+        myBmobShopServer.setLevel("A店铺");
+        myBmobShopServer.setIntro("这是一家很好的店铺");
+        myBmobShopServer.setStar("10");
+        myBmobShopServer.setComment("这是一家不好的店铺");
+        myBmobShopServer.setIsShow("true");
+        myBmobShopServer.setJindu("0");
+        myBmobShopServer.setWeidu("0");
+        myBmobShopServer.setShowPolicy("政策的东西");
+        myBmobShopServer.setContain("内容的东西");
+        myBmobShopServer.setNote("NoteStuff");
+        myBmobShopServer.setUsefulTime("About 10 days");
+        myBmobShopServer.setUnusefulTime("About 10days ,yep");
+        myBmobShopServer.setNumberOfUse("About 10 times");
+        myBmobShopServer.setRule("使用规则");
+        myBmobShopServer.setShopServer("Some kind of shop server");
+        myBmobShopServer.setTips("this, is , tip ,s");
+        MyBmobShopServer.Comment comment =new MyBmobShopServer.Comment();
+        comment.setAvator("头像");
+        comment.setUserName("USerName");
+        comment.setLevel("Level:1");
+        comment.setStar("2");
+        comment.setTime("20170101");
+        comment.setType("type1");
+        comment.setContain("大概这就是轮胎店");
+        mCommentList.add(comment);
+        myBmobShopServer.setComments(mCommentList);
+        myBmobShopServer.save(getApplicationContext(), new SaveListener() {
+            @Override
+            public void onSuccess() {
+                Toasty.success(getApplicationContext(),"保存SUCCESS").show();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Toasty.error(getApplicationContext(),"保存不SUCCESS").show();
+            }
+        });
 
     }
 }

@@ -63,6 +63,9 @@
         <activity
             android:name=".feature.StorageActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".feature.UploadActivity"
+                  android:screenOrientation="portrait"/>
     </application>
 
 
