@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/text_shop_name"
+            style="@style/HorizontalItemTextViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="店铺名称："
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edit_shop_name"
+            style="@style/HorizontalItemEditViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="请输入店铺名称"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/text_owner"
+            style="@style/HorizontalItemTextViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="店主名称："
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edit_owner_name"
+            style="@style/HorizontalItemEditViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="请输入店主名称"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/text_level"
+            style="@style/HorizontalItemTextViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="店铺等级："
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edit_level"
+            style="@style/HorizontalItemEditViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="店铺等级"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/text_intro"
+            style="@style/HorizontalItemTextViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="店铺介绍："
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edit_intro"
+            style="@style/HorizontalItemEditViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="请输入店铺介绍"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/text_address"
+            style="@style/HorizontalItemTextViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="地址："
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edit_address"
+            style="@style/HorizontalItemEditViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="请输入地址"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/text_upload"
+            style="@style/HorizontalItemTextViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="上传图片"
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edit_upload_photo"
+            style="@style/HorizontalItemEditViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="点击上传"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

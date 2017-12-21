@@ -1,0 +1,9 @@
+<resources>
+
+    <string-array name="stepLabels">
+        <item>店铺信息</item>
+        <item>服务设定</item>
+        <item>附加信息</item>
+        <item>检查信息</item>
+    </string-array>
+</resources>

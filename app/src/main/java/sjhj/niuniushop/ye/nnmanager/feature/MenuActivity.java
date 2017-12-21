@@ -150,7 +150,7 @@ public class MenuActivity extends BaseActivity {
     }
 
     @OnClick({R.id.text_customer_manager, R.id.text_manage_payment, R.id.text_help
-            , R.id.button_sign_out, R.id.text_update, R.id.text_customer_manager_by_seller, R.id.text_financial_manager, R.id.text_storage_manager,R.id.button_shop_upload})
+            , R.id.button_sign_out, R.id.text_update, R.id.text_customer_manager_by_seller, R.id.text_financial_manager, R.id.text_storage_manager, R.id.button_shop_upload})
     void click(View view) {
         switch (view.getId()) {
             case R.id.text_customer_manager:
@@ -191,11 +191,9 @@ public class MenuActivity extends BaseActivity {
                 startActivity(storage);
                 break;
             case R.id.button_shop_upload:
-                upload();
-
-
-//                Intent upload = new Intent (this, UploadActivity.class);
-//                startActivity(upload);
+                
+                Intent upload = new Intent(this, UploadShopActivity.class);
+                startActivity(upload);
                 break;
 
         }
@@ -224,7 +222,7 @@ public class MenuActivity extends BaseActivity {
         myBmobShopServer.setRule("使用规则");
         myBmobShopServer.setShopServer("Some kind of shop server");
         myBmobShopServer.setTips("this, is , tip ,s");
-        MyBmobShopServer.Comment comment =new MyBmobShopServer.Comment();
+        MyBmobShopServer.Comment comment = new MyBmobShopServer.Comment();
         comment.setAvator("头像");
         comment.setUserName("USerName");
         comment.setLevel("Level:1");
@@ -237,12 +235,12 @@ public class MenuActivity extends BaseActivity {
         myBmobShopServer.save(getApplicationContext(), new SaveListener() {
             @Override
             public void onSuccess() {
-                Toasty.success(getApplicationContext(),"保存SUCCESS").show();
+                Toasty.success(getApplicationContext(), "保存SUCCESS").show();
             }
 
             @Override
             public void onFailure(int i, String s) {
-                Toasty.error(getApplicationContext(),"保存不SUCCESS").show();
+                Toasty.error(getApplicationContext(), "保存不SUCCESS").show();
             }
         });
 

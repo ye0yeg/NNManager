@@ -19,6 +19,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!--允许读取手机状态 用于创建BmobInstallation-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".feature.NNApplication"
@@ -64,8 +66,19 @@
             android:name=".feature.StorageActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".feature.UploadActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".feature.UploadActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".feature.UploadShopActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
+                  android:theme="@style/Theme.AppCompat.NoActionBar"
+            />
+
+        <activity android:name="me.iwf.photopicker.PhotoPagerActivity"
+                  android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 

@@ -37,4 +37,6 @@
     <!-- 视图Z轴高度 -->
     <dimen name="elevation_app_bar">4dp</dimen>
 
+
+    <dimen name="actionBarSize">32dip</dimen>
 </resources>

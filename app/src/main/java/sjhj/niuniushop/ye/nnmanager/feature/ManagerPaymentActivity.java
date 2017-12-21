@@ -10,12 +10,10 @@ import android.os.Message;
 import android.widget.ListView;
 
 import com.dou361.dialogui.DialogUIUtils;
-import com.dou361.dialogui.listener.DialogUIItemListener;
 import com.dou361.dialogui.listener.DialogUIListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import cn.bmob.v3.BmobQuery;

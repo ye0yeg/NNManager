@@ -3,7 +3,7 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "27.0.0"
     defaultConfig {
         applicationId "sjhj.niuniushop.ye.nnmanager"
         minSdkVersion 15
@@ -25,10 +25,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:26+'
+    compile 'com.android.support:design:26+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:cardview-v7:26.+'
+    compile 'com.android.support:cardview-v7:26+'
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'com.roughike:bottom-bar:2.0.2'
     compile 'com.pnikosis:materialish-progress:1.7'
@@ -57,4 +58,10 @@ dependencies {
     compile 'cn.bmob.android:bmob-sdk:3.4.6'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.google.code.gson:gson:2.8.0'
+    //指示器
+    compile 'com.github.badoualy:stepper-indicator:1.0.7'
+
+    // 多图选择的包
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'me.iwf.photopicker:PhotoPicker:0.9.10@aar'
 }
