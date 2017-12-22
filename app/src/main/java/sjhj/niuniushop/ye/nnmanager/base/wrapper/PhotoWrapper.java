@@ -2,7 +2,6 @@ package sjhj.niuniushop.ye.nnmanager.base.wrapper;
 
 
 import android.app.Dialog;
-import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,10 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,18 +69,9 @@ public class PhotoWrapper extends DialogFragment {
         super.onActivityCreated(savedInstanceState);
         ivPhoto.setImageDrawable(new ColorDrawable());
 
-        SimpleTarget<Bitmap> target = new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource,
-                                        GlideAnimation<? super Bitmap> glideAnimation) {
-                ivPhoto.setImageBitmap(resource);
-            }
-        };
-
         Glide.with(this)
                 .load(mUrl)
-                .asBitmap()
-                .into(target);
+                .into(ivPhoto);
     }
 
     @Override

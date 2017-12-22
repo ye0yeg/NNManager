@@ -15,7 +15,8 @@
         <TextView
             android:id="@+id/text_shop_name"
             style="@style/HorizontalItemTextViewNotRight"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:clickable="false"
             android:gravity="center"
             android:text="店铺名称："
             />
@@ -23,10 +24,19 @@
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/edit_shop_name"
             style="@style/HorizontalItemEditViewNotRight"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:hint="请输入店铺名称"
-            android:maxLines="1"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:id="@+id/dect_shop_name"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_selected"
+            android:visibility="gone"
             />
     </LinearLayout>
 
@@ -41,7 +51,8 @@
         <TextView
             android:id="@+id/text_owner"
             style="@style/HorizontalItemTextViewNotRight"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:clickable="false"
             android:gravity="center"
             android:text="店主名称："
             />
@@ -54,7 +65,51 @@
             android:hint="请输入店主名称"
             android:maxLines="1"
             />
+
+        <ImageView
+            android:id="@+id/dect_owner_name"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/text_main_name"
+            style="@style/HorizontalItemTextViewNotRight"
+            android:layout_weight="2"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="店主账号"
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edit_main_name"
+            style="@style/HorizontalItemEditViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="请输入店主账号"
+            android:maxLines="1"
+            />
+
+        <ImageView
+            android:id="@+id/dect_main_name"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +122,8 @@
         <TextView
             android:id="@+id/text_level"
             style="@style/HorizontalItemTextViewNotRight"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:clickable="false"
             android:gravity="center"
             android:text="店铺等级："
             />
@@ -79,6 +135,14 @@
             android:gravity="center_vertical"
             android:hint="店铺等级"
             android:maxLines="1"
+            />
+
+        <ImageView
+            android:id="@+id/dect_level"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
             />
     </LinearLayout>
 
@@ -93,7 +157,8 @@
         <TextView
             android:id="@+id/text_intro"
             style="@style/HorizontalItemTextViewNotRight"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:clickable="false"
             android:gravity="center"
             android:text="店铺介绍："
             />
@@ -106,7 +171,52 @@
             android:hint="请输入店铺介绍"
             android:maxLines="1"
             />
+
+        <ImageView
+            android:id="@+id/dect_intro"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/horizontal_bar_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:id="@+id/text_contact"
+            style="@style/HorizontalItemTextViewNotRight"
+            android:layout_weight="2"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="联系方式："
+            />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edit_contact"
+            style="@style/HorizontalItemEditViewNotRight"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="请输入联系方式，可用逗号隔开"
+            android:maxLines="1"
+            />
+
+        <ImageView
+            android:id="@+id/dect_contact"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,7 +229,8 @@
         <TextView
             android:id="@+id/text_address"
             style="@style/HorizontalItemTextViewNotRight"
-            android:layout_weight="1"
+            android:layout_weight="2"
+            android:clickable="false"
             android:gravity="center"
             android:text="地址："
             />
@@ -131,6 +242,14 @@
             android:gravity="center_vertical"
             android:hint="请输入地址"
             android:maxLines="1"
+            />
+
+        <ImageView
+            android:id="@+id/dect_address"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
             />
     </LinearLayout>
 
@@ -150,14 +269,14 @@
             android:text="上传图片"
             />
 
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/edit_upload_photo"
-            style="@style/HorizontalItemEditViewNotRight"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:hint="点击上传"
-            android:maxLines="1"
+        <ImageView
+            android:id="@+id/dect_upload"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
             />
+
     </LinearLayout>
 
 
