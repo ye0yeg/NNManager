@@ -64,4 +64,7 @@ dependencies {
     // 多图选择的包
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'me.iwf.photopicker:PhotoPicker:0.9.10@aar'
+
+
+    compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
 }

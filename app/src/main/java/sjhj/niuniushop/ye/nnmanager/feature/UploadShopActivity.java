@@ -8,6 +8,10 @@ import android.support.v4.view.ViewPager;
 
 import com.badoualy.stepperindicator.StepperIndicator;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +23,17 @@ import sjhj.niuniushop.ye.nnmanager.feature.fragment.ShopDoneFragment;
 import sjhj.niuniushop.ye.nnmanager.feature.fragment.ShopInfoFragment;
 import sjhj.niuniushop.ye.nnmanager.feature.fragment.ShopServerFragment;
 import sjhj.niuniushop.ye.nnmanager.network.core.ResponseEntity;
+import sjhj.niuniushop.ye.nnmanager.network.entity.BaseInfoEvent;
+import sjhj.niuniushop.ye.nnmanager.network.entity.ShopInfo;
+import sjhj.niuniushop.ye.nnmanager.network.event.NextFragment;
+import sjhj.niuniushop.ye.nnmanager.network.event.PrewFragment;
+import sjhj.niuniushop.ye.nnmanager.network.event.UserEvent;
 
 /**
  * Created by ye on 2017/12/21.
  */
 
-public class UploadShopActivity extends BaseActivity {
+public class UploadShopActivity extends BaseActivity implements ShopInfoFragment.FragmentInteraction {
 
     @BindView(R.id.vp_upload)
     ViewPager mViewPager;
@@ -32,6 +41,7 @@ public class UploadShopActivity extends BaseActivity {
     @BindView(R.id.si_show_process)
     StepperIndicator mIndicator;
 
+    private ShopInfo mShopInfo;
 
     @Override
     protected int getContentViewLayout() {
@@ -40,6 +50,7 @@ public class UploadShopActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        mShopInfo = new ShopInfo();
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new ShopInfoFragment());
         fragments.add(new ShopServerFragment());
@@ -52,9 +63,29 @@ public class UploadShopActivity extends BaseActivity {
         mIndicator.setViewPager(mViewPager, false);
     }
 
+
+    @Override
+    public void onEvent(PrewFragment event) {
+        super.onEvent(event);
+        mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1);
+        mIndicator.onPageSelected(mViewPager.getCurrentItem());
+    }
+
+    @Override
+    public void onEvent(NextFragment event) {
+        super.onEvent(event);
+        mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+        mIndicator.onPageSelected(mViewPager.getCurrentItem());
+    }
+
     @Override
     protected void onBusinessResponse(String apiPath, boolean success, ResponseEntity rsp) {
 
+    }
+
+    @Override
+    public void processBaseInfo(ShopInfo.BaseInfo baseInfo) {
+        mShopInfo.setBaseInfo(baseInfo);
     }
 
 

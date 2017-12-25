@@ -29,6 +29,8 @@ import okhttp3.Call;
 import sjhj.niuniushop.ye.nnmanager.network.core.ApiInterface;
 import sjhj.niuniushop.ye.nnmanager.network.core.ResponseEntity;
 import sjhj.niuniushop.ye.nnmanager.network.event.AddressSaveEvent;
+import sjhj.niuniushop.ye.nnmanager.network.event.NextFragment;
+import sjhj.niuniushop.ye.nnmanager.network.event.PrewFragment;
 import sjhj.niuniushop.ye.nnmanager.network.event.SingleItemEvent;
 import sjhj.niuniushop.ye.nnmanager.network.event.UserEvent;
 
@@ -70,6 +72,14 @@ public abstract class BaseActivity extends TransitionActivity {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(SingleItemEvent event) {
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(NextFragment event) {
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(PrewFragment event) {
     }
 
 

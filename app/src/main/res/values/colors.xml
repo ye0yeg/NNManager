@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     >
     <color name="colorPrimary">#FDD835</color>
-    <color name="colorPrimaryDark">#FBD536</color>
+    <color name="colorPrimaryDark">#FBD82f</color>
     <color name="colorAccent">@color/orange</color>
 
     <!-- 灰度值(grayscale) -->
