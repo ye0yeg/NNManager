@@ -90,6 +90,8 @@ public class ShopInfoFragment extends BaseFragment {
     private Context mContext = getContext();
     private ArrayList<String> mPhotos;
 
+    private ArrayList<String> mUrlList;
+
     @Override
     protected int getContentViewLayout() {
         return R.layout.fragment_shop_info;
@@ -169,7 +171,7 @@ public class ShopInfoFragment extends BaseFragment {
         edMainName.addTextChangedListener(new BaseAfterWatch() {
             @Override
             protected void BaseAfterChange(Editable editable) {
-                if (editable.toString().length() != 13) {
+                if (editable.toString().length() != 11) {
                     isShopMianName = setRedLight(dectMainName);
                 } else {
                     isShopMianName = setGreenLight(dectMainName);
@@ -250,6 +252,7 @@ public class ShopInfoFragment extends BaseFragment {
                 BmobFile.uploadBatch(getActivity(), heightArray, new UploadBatchListener() {
                     @Override
                     public void onSuccess(List<BmobFile> list, List<String> list1) {
+                        mUrlList= (ArrayList<String>) list1;
                         if (list1.size() == heightArray.length) {//如果数量相等，则代表文件全部上传完成
                             isUploadPic = true;
                             System.gc();
@@ -314,7 +317,7 @@ public class ShopInfoFragment extends BaseFragment {
             baseInfo.setShopIntro(edIntro.getText().toString());
             baseInfo.setShopContact(edContact.getText().toString());
             baseInfo.setAddress(edAddress.getText().toString());
-            baseInfo.setPics(mPhotos);
+            baseInfo.setPics(mUrlList);
             //好了.
             ohSweet(); //Oh!Sweet!
             listterner.processBaseInfo(baseInfo);

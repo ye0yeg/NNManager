@@ -7,10 +7,16 @@ import android.support.v4.view.ViewPager;
 
 import com.badoualy.stepperindicator.StepperIndicator;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
+import es.dmoral.toasty.Toasty;
 import sjhj.niuniushop.ye.nnmanager.R;
 import sjhj.niuniushop.ye.nnmanager.base.BaseActivity;
 import sjhj.niuniushop.ye.nnmanager.feature.fragment.ShopAddtionFragment;
@@ -22,12 +28,13 @@ import sjhj.niuniushop.ye.nnmanager.network.entity.ShopInfo;
 import sjhj.niuniushop.ye.nnmanager.network.entity.ShopServer;
 import sjhj.niuniushop.ye.nnmanager.network.event.NextFragment;
 import sjhj.niuniushop.ye.nnmanager.network.event.PrewFragment;
+import sjhj.niuniushop.ye.nnmanager.network.event.UpLoadEvent;
 
 /**
  * Created by ye on 2017/12/21.
  */
 
-public class UploadShopActivity extends BaseActivity implements ShopInfoFragment.FragmentInteraction, ShopServerFragment.FragmentInteraction {
+public class UploadShopActivity extends BaseActivity implements ShopInfoFragment.FragmentInteraction, ShopServerFragment.FragmentInteraction, ShopAddtionFragment.FragmentInteraction {
 
     @BindView(R.id.vp_upload)
     ViewPager mViewPager;
@@ -39,6 +46,10 @@ public class UploadShopActivity extends BaseActivity implements ShopInfoFragment
 
     private ShopServer mShopServer;
 
+    private ShopInfo.BaseInfo mBaseInfo;
+    private String mAddtion;
+    private String mainUserName;
+
     @Override
     protected int getContentViewLayout() {
         return R.layout.activity_uploadshop;
@@ -48,6 +59,7 @@ public class UploadShopActivity extends BaseActivity implements ShopInfoFragment
     protected void initView() {
         mShopInfo = new ShopInfo();
         mShopServer = new ShopServer();
+        mBaseInfo = new ShopInfo.BaseInfo();
 
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new ShopInfoFragment());
@@ -75,6 +87,43 @@ public class UploadShopActivity extends BaseActivity implements ShopInfoFragment
         mIndicator.onPageSelected(mViewPager.getCurrentItem());
     }
 
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(UpLoadEvent event) {
+
+        ShopInfo shopInfo = new ShopInfo();
+        shopInfo.setAddtion(mAddtion);
+        shopInfo.setBaseInfo(mBaseInfo);
+        shopInfo.setUserName(mainUserName);
+        shopInfo.save(this, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                Toasty.success(UploadShopActivity.this, "1").show();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Toasty.error(UploadShopActivity.this, "1+F" + s).show();
+            }
+        });
+
+        mShopServer.setServerAvail("1");
+        mShopServer.setShopName(mainUserName);
+        mShopServer.save(this, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                Toasty.success(UploadShopActivity.this, "2").show();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Toasty.error(UploadShopActivity.this, "2+F" + s).show();
+            }
+        });
+
+
+    }
+
     @Override
     protected void onBusinessResponse(String apiPath, boolean success, ResponseEntity rsp) {
 
@@ -82,12 +131,18 @@ public class UploadShopActivity extends BaseActivity implements ShopInfoFragment
 
     @Override
     public void processBaseInfo(ShopInfo.BaseInfo baseInfo) {
-        mShopInfo.setBaseInfo(baseInfo);
+        mBaseInfo = baseInfo;
+        mainUserName = baseInfo.getShopMainName();
     }
 
     @Override
     public void processServer(ShopServer server) {
         mShopServer = server;
+    }
+
+    @Override
+    public void processAddtion(String addtion) {
+        mAddtion = addtion;
     }
 
 

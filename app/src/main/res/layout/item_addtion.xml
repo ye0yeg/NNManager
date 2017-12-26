@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/server_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12sp"
+        android:layout_marginTop="16dp"
+        android:text="0元洗车"
+        android:textColor="#000"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/server_item_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:hint="普通价格"
+        android:inputType="numberDecimal"
+        app:met_baseColor="#000"
+        app:met_errorColor="#ddaa00"
+        app:met_floatingLabel="highlight"
+        app:met_primaryColor="#982360" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/server_item_VIP_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:hint="VIP价格"
+        android:inputType="numberDecimal"
+        app:met_baseColor="#000"
+        app:met_errorColor="#ddaa00"
+        app:met_floatingLabel="highlight"
+        app:met_primaryColor="#982360" />
+</LinearLayout>

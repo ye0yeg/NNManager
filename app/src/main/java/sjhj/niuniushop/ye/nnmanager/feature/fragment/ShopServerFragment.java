@@ -234,17 +234,23 @@ public class ShopServerFragment extends BaseFragment {
                 //加入那些东西
                 if (is0Wash) {
                     mServerDetailCarWashPart.add(setDefaultName(cb_wash_car.getText().toString().trim()));
-                }  if (is5Wash) {
+                }
+                if (is5Wash) {
                     mServerDetailCarWashPart.add(setDefaultName(cb_wash_5.getText().toString().trim()));
-                }  if (is7Wahs) {
+                }
+                if (is7Wahs) {
                     mServerDetailCarWashPart.add(setDefaultName(cb_wash_7.getText().toString().trim()));
-                }  if (isInside) {
+                }
+                if (isInside) {
                     mServerDetailCarWashPart.add(setDefaultName(cb_inside.getText().toString().trim()));
-                }  if (isAdWash) {
+                }
+                if (isAdWash) {
                     mServerDetailCarWashPart.add(setDefaultName(cb_ad_wash.getText().toString().trim()));
-                }  if (isAdWashDeep) {
+                }
+                if (isAdWashDeep) {
                     mServerDetailCarWashPart.add(setDefaultName(cb_ad_wash_deep.getText().toString().trim()));
-                }  if (isDedo) {
+                }
+                if (isDedo) {
                     mServerDetailCarWashPart.add(setDefaultName(cb_deodorization.getText().toString().trim()));
                 }
                 DialogUIUtils.dismiss(mShowCarWash);
@@ -315,15 +321,20 @@ public class ShopServerFragment extends BaseFragment {
             public void onClick(View view) {
                 if (isImpSticky) {
                     mServerDetailCarImprPart.add(setDefaultName(cb_sticker.getText().toString().trim()));
-                }  if (isImpCrystal) {
+                }
+                if (isImpCrystal) {
                     mServerDetailCarImprPart.add(setDefaultName(cb_crystal.getText().toString().trim()));
-                }  if (isImpCoating) {
+                }
+                if (isImpCoating) {
                     mServerDetailCarImprPart.add(setDefaultName(cb_coating.getText().toString().trim()));
-                }  if (isImpWax) {
+                }
+                if (isImpWax) {
                     mServerDetailCarImprPart.add(setDefaultName(cb_wax.getText().toString().trim()));
-                }  if (isImpGlaze) {
+                }
+                if (isImpGlaze) {
                     mServerDetailCarImprPart.add(setDefaultName(cb_glaze.getText().toString().trim()));
-                }  if (isImpPolishing) {
+                }
+                if (isImpPolishing) {
                     mServerDetailCarImprPart.add(setDefaultName(cb_polishing.getText().toString().trim()));
                 }
                 DialogUIUtils.dismiss(mShowCarImp);
@@ -379,11 +390,14 @@ public class ShopServerFragment extends BaseFragment {
             public void onClick(View view) {
                 if (isKeepChangeGas) {
                     mServerDetailCarKeepPart.add(setDefaultName(cb_change_can.getText().toString().trim()));
-                }  if (isKeepGasCan) {
+                }
+                if (isKeepGasCan) {
                     mServerDetailCarKeepPart.add(setDefaultName(cb_gas_can.getText().toString().trim()));
-                }  if (isKeepAirCan) {
+                }
+                if (isKeepAirCan) {
                     mServerDetailCarKeepPart.add(setDefaultName(cb_air_can.getText().toString().trim()));
-                }  if (isKeepChangeWiper) {
+                }
+                if (isKeepChangeWiper) {
                     mServerDetailCarKeepPart.add(setDefaultName(cb_change_wiper.getText().toString().trim()));
                 }
                 DialogUIUtils.dismiss(mShowCarKeep);
@@ -437,11 +451,14 @@ public class ShopServerFragment extends BaseFragment {
             public void onClick(View view) {
                 if (isTyreTyre) {
                     mServerDetailCarTyrePart.add(setDefaultName(cb_tyre.getText().toString().trim()));
-                }  if (isTyreBalance) {
+                }
+                if (isTyreBalance) {
                     mServerDetailCarTyrePart.add(setDefaultName(cb_balance.getText().toString().trim()));
-                }  if (isTyreLocate) {
+                }
+                if (isTyreLocate) {
                     mServerDetailCarTyrePart.add(setDefaultName(cb_locate.getText().toString().trim()));
-                }  if (isTyreFix) {
+                }
+                if (isTyreFix) {
                     mServerDetailCarTyrePart.add(setDefaultName(cb_fix.getText().toString().trim()));
                 }
                 DialogUIUtils.dismiss(mShowCarTyre);
@@ -524,14 +541,21 @@ public class ShopServerFragment extends BaseFragment {
 
     private void gatherData() {
 
-        if(mServerDetailCarWashPart!=null){
+        if (mServerDetailCarWashPart != null) {
             allData.addAll(mServerDetailCarWashPart);
         }
-        if(mServerDetailCarKeepPart!=null)
-        allData.addAll(mServerDetailCarKeepPart);
-        allData.addAll(mServerDetailCarImprPart);
-        allData.addAll(mServerDetailCarTyrePart);
-        allData.addAll(mServerDetailCarInstallPart);
+        if (mServerDetailCarKeepPart != null) {
+            allData.addAll(mServerDetailCarKeepPart);
+        }
+        if (mServerDetailCarImprPart != null) {
+            allData.addAll(mServerDetailCarImprPart);
+        }
+        if (mServerDetailCarTyrePart != null) {
+            allData.addAll(mServerDetailCarTyrePart);
+        }
+        if (mServerDetailCarInstallPart!= null) {
+            allData.addAll(mServerDetailCarInstallPart);
+        }
         //发送数据到XX，当点击一次以后变为不可点击
         ShopServer shopServer = new ShopServer();
         shopServer.setServerDetails(allData);

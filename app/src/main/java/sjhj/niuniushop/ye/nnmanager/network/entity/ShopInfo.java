@@ -14,6 +14,9 @@ public class ShopInfo extends BmobObject {
 
     private BaseInfo mBaseInfo;
 
+    private String addtion;
+
+
     public String getUserName() {
         return userName;
     }
@@ -30,15 +33,14 @@ public class ShopInfo extends BmobObject {
         mBaseInfo = baseInfo;
     }
 
-    public BaseServer getBaseServer() {
-        return mBaseServer;
+    public String getAddtion() {
+        return addtion;
     }
 
-    public void setBaseServer(BaseServer baseServer) {
-        mBaseServer = baseServer;
+    public void setAddtion(String addtion) {
+        this.addtion = addtion;
     }
 
-    private BaseServer mBaseServer;
 
     public static class BaseInfo {
 
@@ -116,10 +118,6 @@ public class ShopInfo extends BmobObject {
         }
 
         private ArrayList<String> pics;
-    }
-
-    public class BaseServer {
-
     }
 
 

@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.dd.processbutton.iml.ActionProcessButton
+        android:layout_margin="30dp"
+        android:id="@+id/btnUpload"
+        app:pb_colorComplete="@color/colorPrimaryDark"
+        app:pb_colorNormal="@color/colorPrimary"
+        app:pb_colorPressed="@color/colorAccent"
+        app:pb_textComplete="上传完成!"
+        app:pb_textProgress="上传中……"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="点击上传信息"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+
+    <com.dd.processbutton.FlatButton
+        android:id="@+id/btn_done"
+        android:layout_margin="30dp"
+        android:text="完成√"
+        app:pb_colorNormal="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
 
 </LinearLayout>
