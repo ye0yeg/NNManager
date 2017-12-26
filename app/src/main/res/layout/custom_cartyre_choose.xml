@@ -3,51 +3,35 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:gravity="center_vertical"
               android:layout_margin="33dp"
+              android:gravity="center_vertical"
               android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_washcar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0元洗车"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_normal_5"
+        android:id="@+id/cb_tyre_tyre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="普通洗车5座"/>
+        android:text="轮胎安装 "/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_normal_7"
+        android:id="@+id/cb_tyre_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="普通洗车7座"/>
+        android:text="动平衡"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_inside"
+        android:id="@+id/cb_tyre_locate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="内饰清洗"/>
+        android:text="四轮定位"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_ad_wash"
+        android:id="@+id/cb_tyre_fix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="空调管路清洗"/>
+        android:text="补胎"/>
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_ad_wash_deep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="空调深度清洗"/>
-
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_deodorization"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="车内消毒除臭"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

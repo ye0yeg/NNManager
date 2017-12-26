@@ -1,6 +1,5 @@
 package sjhj.niuniushop.ye.nnmanager.feature;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,10 +7,6 @@ import android.support.v4.view.ViewPager;
 
 import com.badoualy.stepperindicator.StepperIndicator;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,17 +18,16 @@ import sjhj.niuniushop.ye.nnmanager.feature.fragment.ShopDoneFragment;
 import sjhj.niuniushop.ye.nnmanager.feature.fragment.ShopInfoFragment;
 import sjhj.niuniushop.ye.nnmanager.feature.fragment.ShopServerFragment;
 import sjhj.niuniushop.ye.nnmanager.network.core.ResponseEntity;
-import sjhj.niuniushop.ye.nnmanager.network.entity.BaseInfoEvent;
 import sjhj.niuniushop.ye.nnmanager.network.entity.ShopInfo;
+import sjhj.niuniushop.ye.nnmanager.network.entity.ShopServer;
 import sjhj.niuniushop.ye.nnmanager.network.event.NextFragment;
 import sjhj.niuniushop.ye.nnmanager.network.event.PrewFragment;
-import sjhj.niuniushop.ye.nnmanager.network.event.UserEvent;
 
 /**
  * Created by ye on 2017/12/21.
  */
 
-public class UploadShopActivity extends BaseActivity implements ShopInfoFragment.FragmentInteraction {
+public class UploadShopActivity extends BaseActivity implements ShopInfoFragment.FragmentInteraction, ShopServerFragment.FragmentInteraction {
 
     @BindView(R.id.vp_upload)
     ViewPager mViewPager;
@@ -43,6 +37,8 @@ public class UploadShopActivity extends BaseActivity implements ShopInfoFragment
 
     private ShopInfo mShopInfo;
 
+    private ShopServer mShopServer;
+
     @Override
     protected int getContentViewLayout() {
         return R.layout.activity_uploadshop;
@@ -51,12 +47,13 @@ public class UploadShopActivity extends BaseActivity implements ShopInfoFragment
     @Override
     protected void initView() {
         mShopInfo = new ShopInfo();
+        mShopServer = new ShopServer();
+
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new ShopInfoFragment());
         fragments.add(new ShopServerFragment());
         fragments.add(new ShopAddtionFragment());
         fragments.add(new ShopDoneFragment());
-
 
         //添加进入fragment中
         mViewPager.setAdapter(new PagerAdapter(getSupportFragmentManager(), fragments));
@@ -86,6 +83,11 @@ public class UploadShopActivity extends BaseActivity implements ShopInfoFragment
     @Override
     public void processBaseInfo(ShopInfo.BaseInfo baseInfo) {
         mShopInfo.setBaseInfo(baseInfo);
+    }
+
+    @Override
+    public void processServer(ShopServer server) {
+        mShopServer = server;
     }
 
 

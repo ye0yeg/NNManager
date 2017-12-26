@@ -7,47 +7,42 @@
               android:layout_margin="33dp"
               android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_washcar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0元洗车"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_normal_5"
+        android:id="@+id/cb_improve_car_cover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="普通洗车5座"/>
+        android:text="全车贴膜"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_normal_7"
+        android:id="@+id/cb_improve_car_cover_shine_shine_thing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="普通洗车7座"/>
+        android:text="全车镀晶"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_inside"
+        android:id="@+id/cb_improve_car_dumo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="内饰清洗"/>
+        android:text="全车镀膜"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_ad_wash"
+        android:id="@+id/cb_improve_car_dala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="空调管路清洗"/>
+        android:text="全车打蜡"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_ad_wash_deep"
+        android:id="@+id/cb_improve_car_fengyou"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="空调深度清洗"/>
+        android:text="全车封釉"/>
 
     <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/cb_deodorization"
+        android:id="@+id/cb_improve_car_paoguang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="车内消毒除臭"/>
+        android:text="全车抛光"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

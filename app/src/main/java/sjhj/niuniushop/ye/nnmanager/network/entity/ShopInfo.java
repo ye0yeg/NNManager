@@ -2,11 +2,13 @@ package sjhj.niuniushop.ye.nnmanager.network.entity;
 
 import java.util.ArrayList;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by ye on 2017/12/25.
  */
 
-public class ShopInfo {
+public class ShopInfo extends BmobObject {
 
     private String userName;
 
